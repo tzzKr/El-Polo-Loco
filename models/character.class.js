@@ -43,6 +43,8 @@ class Character extends MovableObject {
 
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.moveRight();
+        this.otherDirection = false;
+
         this.walking_sound.play();
 
       }
@@ -50,6 +52,8 @@ class Character extends MovableObject {
       if (this.world.keyboard.LEFT && this.x > -600) {
       this.moveLeft();
         this.walking_sound.play();
+        this.otherDirection = true;
+
       }
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {
