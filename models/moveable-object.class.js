@@ -1,11 +1,6 @@
-class MovableObject {
-    x = 120;
-    y = 220;
-    img;
-    height = 230;
-    width = 100;
-    imageCache = {}
-    currentImage = 0;
+class MovableObject extends DrawableObject {
+   
+    
     speed = 0.25;
     otherDirection = false;
     speedY = 0;
@@ -17,6 +12,7 @@ class MovableObject {
         height: 0,
     }
     energy = 100;
+    lasthit= 0;
 
     applyGravity() {
         setInterval(() => {
@@ -30,45 +26,11 @@ class MovableObject {
     isAboveGround() {
         return this.y < 220;
     }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    drawHitbox(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x + this.offset.x, this.y + this.offset.y,(this.x + this.width - this.offset.width) - (this.x + this.offset.x),(this.y + this.height - this.offset.height) - (this.y + this.offset.y));
-            ctx.stroke();
-        }
-    }
-
-
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image()
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-
-    }
+    
+    
 
     playAnimation(images) {
-        let i = this.currentImage % this.IMAGES_WALKING.length;
+        let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
@@ -97,11 +59,19 @@ class MovableObject {
         this.energy -= 2;
         if (this.energy < 0) {
             this.energy = 0
+        } else {
+            this.lasthit = new Date().getTime();
         }
     }
+    
 
     isDead(){
         return this.energy == 0;
     }
 
+    isHurt() {
+      let timepassed = new Date().getTime() - this.lasthit;
+      timepassed = timepassed / 1000; 
+      return timepassed < 1;
+    }
 }

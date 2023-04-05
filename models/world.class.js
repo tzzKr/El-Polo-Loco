@@ -5,6 +5,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,6 +39,12 @@ class World {
         this.addObjectsToMap(this.level.enemies)
         this.addObjectsToMap(this.level.clouds)
         this.addToMap(this.character);
+        this.ctx.translate(-this.camera_x, 0);
+        //-------------Space for fixed Objects-----------------
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);
+
+
         this.ctx.translate(-this.camera_x, 0);
         //draw wird wieder aufgerufen
         let self = this;
