@@ -134,7 +134,7 @@ class Character extends MovableObject {
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        clearTimeout(this.timeout())
+        
         this.playAnimation(this.IMAGES_WALKING);
       } else if (!(this.world.keyboard.UP || this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.isAboveGround())) {
         this.playAnimation(this.IMAGES_IDLE)
