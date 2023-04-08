@@ -60,28 +60,6 @@ class MovableObject extends DrawableObject {
         this.y + this.offset.y < mo.y + mo.height - mo.offset.y;
     }
 
-// isColliding(obj) {
-//     const thisHitbox = {
-//         x: this.x + this.offset.x,
-//         y: this.y + this.offset.y,
-//         width: this.width - this.offset.width,
-//         height: this.height
-//     };
-
-//     const objHitbox = {
-//         x: obj.x,
-//         y: obj.y,
-//         width: obj.width,
-//         height: obj.height
-//     };
-
-//     const isXColliding = (thisHitbox.x + thisHitbox.width) >= objHitbox.x && thisHitbox.x <= (objHitbox.x + objHitbox.width);
-//     const isYColliding = (thisHitbox.y + thisHitbox.height) >= objHitbox.y && thisHitbox.y <= (objHitbox.y + objHitbox.height);
-
-//     return isXColliding && isYColliding;
-// }
-
-
 
     hit(){
         this.energy -= 2;

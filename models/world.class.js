@@ -6,6 +6,9 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    statusBarHealth = new StatusBarHealth();
+    statusBarBottle = new StatusBarBottle();
+    statusBarCoins = new StatusBarCoins();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -35,7 +38,7 @@ class World {
 
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                  this.statusBar.setPercentage(this.character.energy)
+                  this.statusBarHealth.setPercentage(this.character.energy)
             }
         });
     };  
@@ -45,26 +48,33 @@ class World {
             if (this.keyboard.K) {
                 let bottle = new ThrowableObject(this.character.x, this.character.y + 50)
                 this.throwableObjects.push(bottle)
-            }
+            };
         
         
-    }
+    };
 
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMap(this.level.backgroundObjects)
-        this.addObjectsToMap(this.level.enemies)
-        this.addObjectsToMap(this.level.clouds)
-        this.addObjectsToMap(this.throwableObjects)
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
+
+
+        this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         //-------------Space for fixed Objects-----------------
-        this.addToMap(this.statusBar);
+
+
+        this.addToMap(this.statusBarHealth);
+        this.addToMap(this.statusBarBottle);
+        this.addToMap(this.statusBarCoins);
+        //--------------End for fixes Objects--------------
         this.ctx.translate(this.camera_x, 0);
-
-
         this.ctx.translate(-this.camera_x, 0);
         //draw wird wieder aufgerufen
         let self = this;
