@@ -24,7 +24,12 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        return this.y < 220;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y < 220;
+
+        }
     }
     
     
@@ -49,11 +54,34 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
-        return this.x + this.width - this.offset.x > mo.x + mo.offset.x &&    //   right > left =>   Collision in front
-        this.y + this.height - this.offset.y > mo.y + mo.offset.y &&     //    top > bottom =>   Collision bottom
-        this.x + this.offset.x < mo.x + mo.width - mo.offset.x &&       //     left > right =>   Collision behind
+        return this.x + this.width - this.offset.x > mo.x + mo.offset.x &&  
+        this.y + this.height - this.offset.y > mo.y + mo.offset.y &&     
+        this.x + this.offset.x < mo.x + mo.width - mo.offset.x &&       
         this.y + this.offset.y < mo.y + mo.height - mo.offset.y;
     }
+
+// isColliding(obj) {
+//     const thisHitbox = {
+//         x: this.x + this.offset.x,
+//         y: this.y + this.offset.y,
+//         width: this.width - this.offset.width,
+//         height: this.height
+//     };
+
+//     const objHitbox = {
+//         x: obj.x,
+//         y: obj.y,
+//         width: obj.width,
+//         height: obj.height
+//     };
+
+//     const isXColliding = (thisHitbox.x + thisHitbox.width) >= objHitbox.x && thisHitbox.x <= (objHitbox.x + objHitbox.width);
+//     const isYColliding = (thisHitbox.y + thisHitbox.height) >= objHitbox.y && thisHitbox.y <= (objHitbox.y + objHitbox.height);
+
+//     return isXColliding && isYColliding;
+// }
+
+
 
     hit(){
         this.energy -= 2;

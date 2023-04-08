@@ -9,8 +9,12 @@ function init() {
 
  
 window.addEventListener("keydown", (e) => {
+    console.log('k :>> ', e.code);
     if (e.code == "ArrowRight") {
         keyboard.RIGHT = true;
+    }
+    if (e.code == "KeyK") {
+        keyboard.K = true;
     }
 
     if (e.code == "ArrowLeft") {
@@ -35,6 +39,10 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => {
     if (e.code == "ArrowRight") {
         keyboard.RIGHT = false;
+    }
+
+    if (e.code == "KeyK") {
+        keyboard.K = false;;
     }
 
     if (e.code == "ArrowLeft") {
