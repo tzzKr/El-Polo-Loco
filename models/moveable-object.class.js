@@ -12,7 +12,13 @@ class MovableObject extends DrawableObject {
         height: 0,
     }
     energy = 100;
+    maxEnergy = 100;
+    coins = 0;
+    maxCoins = 11;
+    bottles = 0;
+    maxBottles = 1;
     lasthit= 0;
+    hurt_sound = new Audio('audio/hurt.mp3');
 
     applyGravity() {
         setInterval(() => {
@@ -54,20 +60,25 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
-        return this.x + this.width - this.offset.x > mo.x + mo.offset.x &&  
-        this.y + this.height - this.offset.y > mo.y + mo.offset.y &&     
-        this.x + this.offset.x < mo.x + mo.width - mo.offset.x &&       
+        return this.x + this.width - this.offset.width > mo.x + mo.offset.x &&  
+        this.y + this.height - this.offset.height > mo.y + mo.offset.y && 
+        this.x + this.offset.x < mo.x + mo.width - mo.offset.x &&  
         this.y + this.offset.y < mo.y + mo.height - mo.offset.y;
     }
 
 
+
+
+
     hit(){
+        this.hurt_sound.currentTime = 0.35;
         this.energy -= 2;
         if (this.energy < 0) {
             this.energy = 0
         } else {
             this.lasthit = new Date().getTime();
         }
+        this.hurt_sound.play();
     }
     
 
@@ -80,4 +91,14 @@ class MovableObject extends DrawableObject {
       timepassed = timepassed / 1000; 
       return timepassed < 1;
     }
+
+    collectCoin(){
+        this.coins++;
+        
+    };
+
+    collectBottle(){
+        this.bottles++;
+        
+    };
 }

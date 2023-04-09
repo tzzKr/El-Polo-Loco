@@ -6,29 +6,27 @@ class StatusBar extends DrawableObject {
     width = 595/3;
     height = 158/3;
     
-    percentage = 100;
-    bottles = 5;
 
 
 
 
-    setPercentage(percentage) {
+    setPercentage(percentage, object) {
         this.percentage = percentage;
-        let path = this.IMAGES[this.resolveImageIndex(percentage)];
+        let path = this.IMAGES[this.resolveImageIndex(percentage, object)];
         this.img = this.imageCache[path];
     }
 
 
-    resolveImageIndex(percentage){
-        if (percentage == 100) {
+    resolveImageIndex(percentage, object){
+        if (percentage == object) {
             return 5;
-        }else if (percentage > 80) {
+        }else if (percentage > object/5*4) {
             return 4;
-        }else if (percentage > 60) {
+        }else if (percentage > object/5*3) {
             return 3;
-        }else if (percentage > 40) {
+        }else if (percentage > object/5*2) {
             return 2;
-        }else if (percentage > 20) {
+        }else if (percentage > object/5) {
             return 1;
         }else {
             return 0;

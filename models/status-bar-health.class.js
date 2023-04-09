@@ -14,11 +14,11 @@ IMAGES = [
 
 
 constructor() {
-    super().loadImage(this.IMAGES[0]);
+    super().loadImage(this.IMAGES[6]);
     this.loadImages(this.IMAGES);
     this.x = 20;
     this.y = 0;
-    this.setPercentage(100)
+    this.setPercentage(100, 100)
 }
 
 

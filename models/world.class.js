@@ -11,6 +11,10 @@ class World {
     statusBarCoins = new StatusBarCoins();
     EndbossStatus = new StatusBarEndbossHealth();
     throwableObjects = [];
+    collectingCoin = new Audio('audio/Coin.mp3');
+    collectingBottle = new Audio('audio/CollectBottle.mp3');
+    collectingPowerUp = new Audio('audio/Coin.mp3');
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -39,19 +43,50 @@ class World {
 
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                  this.statusBarHealth.setPercentage(this.character.energy)
+                this.statusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy)
+            }
+        });
+        this.level.coins.forEach((coin) => {
+
+            if (this.character.isColliding(coin)) {
+                this.collectingCoin.currentTime = 0;
+                this.character.collectCoin();
+                this.deleteAfterColelcted(this.level.coins, coin);
+                this.statusBarCoins.setPercentage(this.character.coins, this.character.maxCoins);
+                this.collectingCoin.play();
+            }
+        });
+        this.level.bottles.forEach((bottles) => {
+
+            if (this.character.isColliding(bottles)) {
+                this.collectingBottle.currentTime = 0;
+                this.character.collectBottle();
+                this.deleteAfterColelcted(this.level.bottles, bottles)
+
+                this.statusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles)
+                this.collectingBottle.play();
             }
         });
     };  
 
+    deleteAfterColelcted(object, object2) {
+
+        object.splice(object.indexOf(object2),1);
+
+    }
+
     checkThrowObjects() {
         
             if (this.keyboard.K) {
-                let bottle = new ThrowableObject(this.character.x, this.character.y + 50)
-                this.throwableObjects.push(bottle)
+                if (this.character.bottles > 0) {
+                    let bottle = new ThrowableObject(this.character.x, this.character.y + 50);
+                this.throwableObjects.push(bottle);
+                this.character.bottles--;
+                this.statusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles)
+
+                }
+                
             };
-        
-        
     };
 
 
@@ -63,6 +98,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.powerUps);
         
 
         this.addObjectsToMap(this.throwableObjects);

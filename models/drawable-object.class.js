@@ -27,15 +27,9 @@ class DrawableObject {
     }
 
     drawHitbox(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
+        
 
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof BottleObject || this instanceof CoinObject || this instanceof PowerUpObject || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'red';

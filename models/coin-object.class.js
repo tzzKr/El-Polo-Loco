@@ -8,6 +8,12 @@ class CoinObject extends MovableObject {
         'img/8_coin/coin_1.png',
         'img/8_coin/coin_2.png',
     ]
+    offset = {
+        x: 30, //left
+        y: 30, //up
+        width: 30, //right
+        height: 30, //down
+      }
 
 
     constructor(x, y) {
@@ -24,4 +30,6 @@ class CoinObject extends MovableObject {
             this.playAnimation(this.IMAGES_COIN)
         }, 1000);
     }
+
+    
 }

@@ -22,7 +22,6 @@ function init() {
 
 
 window.addEventListener("keydown", (e) => {
-    console.log('k :>> ', e.code);
     if (e.code == "ArrowRight") {
         keyboard.RIGHT = true;
     }

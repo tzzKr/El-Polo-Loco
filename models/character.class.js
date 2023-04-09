@@ -1,16 +1,15 @@
 class Character extends MovableObject {
   height = 200;
   width = 101;
-  // y = 220; real ground
-  y = 170;
+  y = 220; 
+  // y = 170;
   speed = 5;
-  timeoutId;
 
   offset = {
-    x: 20,
-    y: 70,
-    width: 10,
-    height: 0,
+    x: 20, //left
+    y: 70,  //up
+    width: 10, //right
+    height: 0, //down
   }
 
   IMAGES_WALKING = [
@@ -74,7 +73,7 @@ class Character extends MovableObject {
     'img/2_character_pepe/5_dead/D-56.png',
     'img/2_character_pepe/5_dead/D-57.png',
   ]
-
+  count = 0;
   world;
   walking_sound = new Audio('audio/Run.mp3');
 
@@ -143,7 +142,11 @@ class Character extends MovableObject {
     }, 100);
   }
 
-
+  countSeconds() {
+    setInterval(() => {
+      this.count++;
+    }, 1000);
+  }
 
 
   jump() {
