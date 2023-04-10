@@ -1,6 +1,6 @@
 class MovableObject extends DrawableObject {
-   
-    
+
+
     speed = 0.25;
     otherDirection = false;
     speedY = 0;
@@ -17,7 +17,7 @@ class MovableObject extends DrawableObject {
     maxCoins = 11;
     bottles = 0;
     maxBottles = 1;
-    lasthit= 0;
+    lasthit = 0;
     hurt_sound = new Audio('audio/hurt.mp3');
 
     applyGravity() {
@@ -37,8 +37,8 @@ class MovableObject extends DrawableObject {
 
         }
     }
-    
-    
+
+
 
     playAnimation(images) {
         let i = this.currentImage % images.length;
@@ -60,17 +60,23 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(mo) {
-        return this.x + this.width - this.offset.width > mo.x + mo.offset.x &&  
-        this.y + this.height - this.offset.height > mo.y + mo.offset.y && 
-        this.x + this.offset.x < mo.x + mo.width - mo.offset.x &&  
-        this.y + this.offset.y < mo.y + mo.height - mo.offset.y;
+        return this.x + this.width - this.offset.width > mo.x + mo.offset.x &&
+            this.y + this.height - this.offset.height > mo.y + mo.offset.y &&
+            this.x + this.offset.x < mo.x + mo.width - mo.offset.x &&
+            this.y + this.offset.y < mo.y + mo.height - mo.offset.y;
+    }
+
+    isCollidingTop(mo) {
+        if (this.isColliding(mo) && this.isAboveGround()) {
+            return true;
+        }
     }
 
 
 
 
 
-    hit(){
+    hit() {
         this.hurt_sound.currentTime = 0.35;
         this.energy -= 2;
         if (this.energy < 0) {
@@ -80,25 +86,25 @@ class MovableObject extends DrawableObject {
         }
         this.hurt_sound.play();
     }
-    
 
-    isDead(){
+
+    isDead() {
         return this.energy == 0;
     }
 
     isHurt() {
-      let timepassed = new Date().getTime() - this.lasthit;
-      timepassed = timepassed / 1000; 
-      return timepassed < 1;
+        let timepassed = new Date().getTime() - this.lasthit;
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
     }
 
-    collectCoin(){
+    collectCoin() {
         this.coins++;
-        
+
     };
 
-    collectBottle(){
+    collectBottle() {
         this.bottles++;
-        
+
     };
 }

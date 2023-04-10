@@ -24,8 +24,10 @@ z-index: 2;
    
 }
 .logoBg {
+    position: relative;
     display: flex;
     justify-content: center;
+    z-index: 3;
 }
 .bgimage {
     position: fixed;

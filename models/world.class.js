@@ -39,13 +39,45 @@ class World {
     }
 
     checkCollisions() {
+       
+        this.detectEnemyCollision();  
+        this.detectCoinCollision();
+        this.detectBottleCollision();
+        this.detectPowerUpCollision();
+        
+    };  
+
+    detectBottleHit() {
+        this.throwableObjects.forEach((bottle) => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.bottle.isColliding(enemy)) {
+                    this.deleteAfterColelcted(this.throwableObjects, bottle);
+                    this.deleteAfterColelcted(this.level.enemies, enemy);
+                }
+            });
+        });
+    };
+        
+
+    detectEnemyCollision() {
         this.level.enemies.forEach((enemy) => {
 
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isCollidingTop(enemy)) {
+                this.character.jump();
+                this.character.chickenDead();
+                this.deleteAfterColelcted(this.level.enemies, enemy)
+                
+            }else if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy)
+
             }
+            
+            
         });
+    };
+
+    detectCoinCollision() {
         this.level.coins.forEach((coin) => {
 
             if (this.character.isColliding(coin)) {
@@ -56,6 +88,9 @@ class World {
                 this.collectingCoin.play();
             }
         });
+    };
+
+    detectBottleCollision() {
         this.level.bottles.forEach((bottles) => {
 
             if (this.character.isColliding(bottles)) {
@@ -69,10 +104,22 @@ class World {
         });
     };
 
+    detectPowerUpCollision() {
+        this.level.powerUps.forEach((powerUp) => {
+
+            if (this.character.isColliding(powerUp)) {
+                this.collectingBottle.currentTime = 0;
+                this.character.collectBottle();
+                this.deleteAfterColelcted(this.level.powerUps, powerUp)
+
+                this.statusBarBottle.setPercentage(this.character.powerUps, this.character.maxPowerUps)
+                // this.collectingBottle.play();
+            }
+        });
+    };
+
     deleteAfterColelcted(object, object2) {
-
         object.splice(object.indexOf(object2), 1);
-
     }
 
     checkThrowObjects() {
@@ -83,9 +130,6 @@ class World {
             this.throwableObjects.push(bottle);
             this.character.bottles--;
             this.statusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles);
-
-
-
         };
     };
 
