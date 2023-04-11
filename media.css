@@ -1,0 +1,13 @@
+@media (max-height: 1000px) {
+    .Logo {
+        margin-top: 0px;
+        width: 700px;
+    }
+}
+@media (max-height: 700px) {
+    .Logo {
+        margin-top: 0px;
+        width: 500px;
+    }
+}
+    

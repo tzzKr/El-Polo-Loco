@@ -11,7 +11,7 @@ let CanvasAnimation = anime.timeline({
 });
 
 logoAnimation.add({
-    targets: '#logo',
+    targets: '.Logo',
     opacity: [0, 1],
     translateY: [400, 0],
     delay: 1000,
