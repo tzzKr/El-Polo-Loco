@@ -61,12 +61,16 @@ class World {
 
     detectEnemyCollision() {
         this.level.enemies.forEach((enemy) => {
+            
 
             if (this.character.isCollidingTop(enemy)) {
                 this.character.jump();
                 enemy.dead = true;
 
-                this.deleteAfterColelcted(this.level.enemies, enemy)
+                setTimeout(() => {
+                    this.deleteAfterColelcted(this.level.enemies, enemy)
+                    
+                }, 500);
                     
                 
             }else if (this.character.isColliding(enemy)) {
