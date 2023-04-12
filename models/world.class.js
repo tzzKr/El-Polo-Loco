@@ -14,7 +14,8 @@ class World {
     collectingCoin = new Audio('audio/Coin.mp3');
     collectingBottle = new Audio('audio/CollectBottle.mp3');
     collectingPowerUp = new Audio('audio/Coin.mp3');
-
+    oldValue = 0;
+    newValue = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -24,9 +25,6 @@ class World {
         this.setWorld();
         this.run();
     }
-
-
-
     setWorld() {
         this.character.world = this;
     }
@@ -46,7 +44,6 @@ class World {
         this.detectPowerUpCollision();
 
     };
-
     detectBottleHit() {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.forEach((enemy) => {
@@ -57,30 +54,21 @@ class World {
             });
         });
     };
-
-
     detectEnemyCollision() {
+        this.oldValue = this.character.y;
+        this.newValue = this.character.y;
         this.level.enemies.forEach((enemy) => {
-
-
-            if (this.character.isCollidingTop(enemy)) {
+            if (this.character.isCollidingTop(enemy) && this.isValueDecreasing()) {
                 this.character.jump();
                 enemy.dead = true;
                 enemy.chicken_dead_sound.play();
-
                 setTimeout(() => {
                     this.deleteAfterColelcted(this.level.enemies, enemy)
-
                 }, 500);
-
-
             } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy)
-
             }
-
-
         });
     };
 
@@ -200,5 +188,9 @@ class World {
 
         this.ctx.restore();
     }
+
+    isValueDecreasing(oldValue, newValue) {
+        return oldValue > newValue;
+      }
 
 }
