@@ -64,8 +64,10 @@ class World {
 
             if (this.character.isCollidingTop(enemy)) {
                 this.character.jump();
-                this.character.chickenDead();
+                enemy.dead = true;
+
                 this.deleteAfterColelcted(this.level.enemies, enemy)
+                    
                 
             }else if (this.character.isColliding(enemy)) {
                 this.character.hit();
