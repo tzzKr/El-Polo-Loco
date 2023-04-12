@@ -39,13 +39,13 @@ class World {
     }
 
     checkCollisions() {
-       
-        this.detectEnemyCollision();  
+
+        this.detectEnemyCollision();
         this.detectCoinCollision();
         this.detectBottleCollision();
         this.detectPowerUpCollision();
-        
-    };  
+
+    };
 
     detectBottleHit() {
         this.throwableObjects.forEach((bottle) => {
@@ -57,29 +57,30 @@ class World {
             });
         });
     };
-        
+
 
     detectEnemyCollision() {
         this.level.enemies.forEach((enemy) => {
-            
+
 
             if (this.character.isCollidingTop(enemy)) {
                 this.character.jump();
                 enemy.dead = true;
+                enemy.chicken_dead_sound.play();
 
                 setTimeout(() => {
                     this.deleteAfterColelcted(this.level.enemies, enemy)
-                    
+
                 }, 500);
-                    
-                
-            }else if (this.character.isColliding(enemy)) {
+
+
+            } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy)
 
             }
-            
-            
+
+
         });
     };
 
