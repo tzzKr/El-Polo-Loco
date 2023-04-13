@@ -16,7 +16,10 @@ class ThrowableObject extends MovableObject {
 
     ]
     throwBottle = new Audio('audio/Throw.mp3');
-
+    speedX = 10;
+    bottleDestroyed = false;
+    destroyedImagesCount = this.IMAGES_DESTROYED.length;
+    destroyedImagesPlayed = 0;
 
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png')
@@ -27,23 +30,44 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 100;
         this.width = 100;
+
         this.throw()
     }
 
     throw() {
-
         this.speedY = 10;
         this.applyGravity();
         this.throwBottle.playbackRate = 1.5;
         this.throwBottle.play();
-        setInterval(() => {
-            this.playAnimation(this.IMAGES)
-            this.x += 20;
-            // this.hitGround()
-
-        }, 1000 / 25);
+        this.animate();
     }
 
+    animate() {
+        this.playAnimation(this.IMAGES);
+        this.x += this.speedX;
+        if (this.bottleDestroyed) {
+            this.animateSplash();
+        } else {
+            requestAnimationFrame(() => this.animate());
+        }
+    }
+
+    animateSplash() {
+        if (this.destroyedImagesPlayed >= this.destroyedImagesCount) {
+        } else {
+            this.playAnimation(this.IMAGES_DESTROYED);
+            setTimeout(() => {
+                this.animateSplash();
+            }, 500/5);
+        }
+    }
+
+
+    bottleHit() {
+        if (this.bottleDestroyed) {
+            this.playAnimation(this.IMAGES_DESTROYED);
+        }
+    }
     hitGround() {
         console.log('this.y :>> ', this.y);
         if (this.y == 300) {

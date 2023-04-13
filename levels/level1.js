@@ -10,7 +10,6 @@ level1 = new Level(
         // new Chicken(),
         // new Chicken(),
         // new Chicken(),
-        new Endboss(),
     ],
     [
         new Cloud('img/5_background/layers/4_clouds/1.png'),
@@ -75,7 +74,11 @@ level1 = new Level(
     ],
     [
         new PowerUpObject('img/8_coin/BorritoPowerUP.png', 200, 200),
-    ]
+    ],
+    [
+        new Endboss(),
+
+    ],
 
 );
 

@@ -8,11 +8,12 @@ class StatusBarEndbossHealth extends StatusBar {
         'img/7_statusbars/2_statusbar_endboss/80.png',
         'img/7_statusbars/2_statusbar_endboss/100.png',
     ]
+    health = 100;
 
     constructor() {
         super().loadImage(this.IMAGES[5]);
         this.loadImages(this.IMAGES);
-        this.x = 330;
+        this.x = 500;
         this.y = -1;
         
     }
