@@ -1,7 +1,7 @@
 class Character extends MovableObject {
   height = 200;
   width = 101;
-  y = 220; 
+  y = 220;
   // y = 170;
   speed = 5;
 
@@ -121,7 +121,7 @@ class Character extends MovableObject {
         this.otherDirection = true;
 
       }
-      
+
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {
         this.jump()
@@ -134,28 +134,25 @@ class Character extends MovableObject {
     }, 1000 / 60)
 
     setInterval(() => {
-
+      
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD)
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT)
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
+
       } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        
+
         this.playAnimation(this.IMAGES_WALKING);
       } else if (!(this.world.keyboard.UP || this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.isAboveGround())) {
         this.playAnimation(this.IMAGES_IDLE)
-        
+
       }
     }, 100);
   }
 
-  countSeconds() {
-    setInterval(() => {
-      this.count++;
-    }, 1000);
-  }
+  
 
 
   jump() {
@@ -163,3 +160,4 @@ class Character extends MovableObject {
   }
 }
 
+  

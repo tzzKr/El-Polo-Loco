@@ -14,8 +14,8 @@ class World {
     collectingCoin = new Audio('audio/Coin.mp3');
     collectingBottle = new Audio('audio/CollectBottle.mp3');
     collectingPowerUp = new Audio('audio/Coin.mp3');
-    oldValue = 0;
-    newValue = 0;
+    oldValue;
+    newValue;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -33,6 +33,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
+            
         }, 100);
     }
 
@@ -55,10 +56,9 @@ class World {
         });
     };
     detectEnemyCollision() {
-        this.oldValue = this.character.y;
-        this.newValue = this.character.y;
+        this.setValueFalling();
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isCollidingTop(enemy) && this.isValueDecreasing()) {
+            if (this.character.isCollidingTop(enemy) && this.isValueDecreasing(this.oldValue, this.newValue)) {
                 this.character.jump();
                 enemy.dead = true;
                 enemy.chicken_dead_sound.play();
@@ -190,7 +190,13 @@ class World {
     }
 
     isValueDecreasing(oldValue, newValue) {
-        return oldValue > newValue;
-      }
+        return oldValue < newValue;
+    }
 
+    setValueFalling() {
+        this.newValue = this.character.y;
+        setTimeout(() => {
+            this.oldValue = this.character.y;
+        }, 500);
+    }
 }
