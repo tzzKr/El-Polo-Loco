@@ -56,6 +56,7 @@ class Endboss extends MovableObject {
     health = 100;
     hit = false;
     dead = false;
+    bossArea = 200 - this.x;
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
@@ -89,6 +90,16 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_WALKING);
         this.move();
     }
+    alertPattern() {
+        if (this.character.x > this.bossArea) {
+            this.speed = 0;
+            this.playAnimation(this.IMAGES_ALERT);
+        } else {
+            this.move();
+            this.idlePattern();
+        }
+        
+    }
 
 
 
@@ -96,8 +107,13 @@ class Endboss extends MovableObject {
         this.x += this.speed * this.direction;
         if (this.direction === 1 && this.x >= this.initialX + this.moveDistance) {
             this.direction = -1;
+        this.otherDirection = false;
+
         } else if (this.direction === -1 && this.x <= this.initialX - this.moveDistance) {
             this.direction = 1;
+
+        this.otherDirection = true;
+
         }
     }
 
