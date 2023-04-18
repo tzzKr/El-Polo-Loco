@@ -46,6 +46,8 @@ class World {
         this.detectBottleCollision();
         this.detectPowerUpCollision();
         this.detectBottleHit();
+        this.characterHitEndboss();
+        this.characterNearEndboss();
     };
     detectBottleHit() {
         this.throwableObjects.forEach((bottle) => {
@@ -68,9 +70,9 @@ class World {
                 endboss.hit = true;
 
                 setTimeout(() => {
-                    this.deleteAfterColelcted(this.throwableObjects, bottle);
+                    this.deleteAfterCollected(this.throwableObjects, bottle);
                     this.endbossHit(endboss);
-                }, 500);
+                }, 200);
 
             }
 
@@ -93,6 +95,26 @@ class World {
 
     }
 
+    characterNearEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.x <= (endboss.x - 200) && !(endboss.bossArea)) {
+                endboss.alertTriggered = true;
+                endboss.bossArea = true;
+            }
+            endboss.targetX = this.character.x;
+            endboss.targetY = this.character.y;
+        });
+         
+    }
+    characterHitEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.isColliding(endboss) && !endboss.hit) {
+                this.character.hit();
+                this.statusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy)
+            }
+        });
+    }
+
     bottleHitEnemy(bottle) {
         this.level.enemies.forEach((enemy) => {
             if (bottle.isColliding(enemy) && !enemy.hit) {
@@ -102,8 +124,8 @@ class World {
                 bottle.speedY = 0;
                 bottle.speedX = 0;
                 setTimeout(() => {
-                    this.deleteAfterColelcted(this.throwableObjects, bottle);
-                    this.deleteAfterColelcted(this.level.enemies, enemy);
+                    this.deleteAfterCollected(this.throwableObjects, bottle);
+                    this.deleteAfterCollected(this.level.enemies, enemy);
                 }, 500);
             }
         });
@@ -117,7 +139,7 @@ class World {
                 enemy.dead = true;
                 enemy.chicken_dead_sound.play();
                 setTimeout(() => {
-                    this.deleteAfterColelcted(this.level.enemies, enemy)
+                    this.deleteAfterCollected(this.level.enemies, enemy)
                 }, 500);
             } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
@@ -132,7 +154,7 @@ class World {
             if (this.character.isColliding(coin)) {
                 this.collectingCoin.currentTime = 0;
                 this.character.collectCoin();
-                this.deleteAfterColelcted(this.level.coins, coin);
+                this.deleteAfterCollected(this.level.coins, coin);
                 this.statusBarCoins.setPercentage(this.character.coins, this.character.maxCoins);
                 this.collectingCoin.play();
             }
@@ -145,7 +167,7 @@ class World {
             if (this.character.isColliding(bottles)) {
                 this.collectingBottle.currentTime = 0;
                 this.character.collectBottle();
-                this.deleteAfterColelcted(this.level.bottles, bottles)
+                this.deleteAfterCollected(this.level.bottles, bottles)
 
                 this.statusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles)
                 this.collectingBottle.play();
@@ -159,7 +181,7 @@ class World {
             if (this.character.isColliding(powerUp)) {
                 this.collectingBottle.currentTime = 0;
                 this.character.collectBottle();
-                this.deleteAfterColelcted(this.level.powerUps, powerUp)
+                this.deleteAfterCollected(this.level.powerUps, powerUp)
 
                 this.statusBarBottle.setPercentage(this.character.powerUps, this.character.maxPowerUps)
                 // this.collectingBottle.play();
@@ -167,7 +189,7 @@ class World {
         });
     };
 
-    deleteAfterColelcted(object, item) {
+    deleteAfterCollected(object, item) {
         object.splice(object.indexOf(item), 1);
     }
 

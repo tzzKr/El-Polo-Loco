@@ -52,11 +52,15 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G25.png',
         'img/4_enemie_boss_chicken/5_dead/G26.png',
     ];
+    alertTriggered = false;
     maxHealth = 100;
     health = 100;
     hit = false;
     dead = false;
-    bossArea = 200 - this.x;
+    bossArea = false;
+    targetX;
+    targetY;
+    patternStyle = 'idle';
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
@@ -72,50 +76,106 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-
-            if (this.hit) {
-                setTimeout(() => {
-                    this.playAnimation(this.IMAGES_HURT);
-
-                }, 200);
-            }
-
-            this.move();
-            
+            this.pattern();
+            this.setPatternStyle();
         }, 200);
+    }
+
+    setPatternStyle() {
+        if (this.health <= 0) {
+            this.patternStyle = 'dead';
+        } else if (this.hit) {
+            this.patternStyle = 'hurt';
+        } else if (this.alertTriggered) {
+            this.patternStyle = 'triggered';
+        };
     }
 
     idlePattern() {
         this.playAnimation(this.IMAGES_WALKING);
         this.move();
     }
-    alertPattern() {
-        if (this.character.x > this.bossArea) {
-            this.speed = 0;
-            this.playAnimation(this.IMAGES_ALERT);
-        } else {
-            this.move();
-            this.idlePattern();
+    pattern() {
+
+        switch (this.patternStyle) {
+            case 'idle':
+                this.idlePattern();
+
+                break;
+            case 'triggered':
+                this.alertPattern();
+
+                break;
+            case 'hurt':
+                this.hurtPattern();
+                break;
+            case 'attack':
+
+                break;
+            case 'dead':
+
+                break;
+
+            case 'targetCharacter':
+                this.targetCharacterPattern();
+                break;
+            default:
+                break;
         }
+    }
+
+    alertPattern() {
+        this.speed = 0;
+        this.playAnimation(this.IMAGES_ALERT);
+        this.otherDirection = false;
+        this.alertTriggered = false;
+        setTimeout(() => {
+        this.patternStyle = 'targetCharacter';
+
+        }, this.IMAGES_ALERT.length * 150);
+
         
     }
 
+    hurtPattern() {
+        this.speed = 0;
+        this.playAnimation(this.IMAGES_HURT);
 
+        setTimeout(() => {
+        this.patternStyle = 'targetCharacter';
+            
+        }, this.IMAGES_HURT.length * 200);
+        this.hit = false;
+    }
+
+    targetCharacterPattern() {
+        this.speed = 10; // Geschwindigkeit, mit der der Boss dem Charakter folgt
+        this.x += this.speed * this.direction;
+
+        if (this.x < this.targetX) {
+            this.direction = 1;
+            this.otherDirection = true;
+        } else {
+            this.direction = -1;
+            this.otherDirection = false;
+        }
+        this.playAnimation(this.IMAGES_WALKING);
+
+    }
 
     move() {
         this.x += this.speed * this.direction;
         if (this.direction === 1 && this.x >= this.initialX + this.moveDistance) {
             this.direction = -1;
-        this.otherDirection = false;
+            this.otherDirection = false;
 
         } else if (this.direction === -1 && this.x <= this.initialX - this.moveDistance) {
             this.direction = 1;
 
-        this.otherDirection = true;
+            this.otherDirection = true;
 
         }
     }
 
-    
+
 }
