@@ -48,6 +48,7 @@ class World {
         this.detectBottleHit();
         this.characterHitEndboss();
         this.characterNearEndboss();
+        this.bossAttack();
     };
     detectBottleHit() {
         this.throwableObjects.forEach((bottle) => {
@@ -93,6 +94,16 @@ class World {
 
         }, 200);
 
+    }
+
+    bossAttack() {
+        this.level.endboss.forEach((endboss) => {
+
+            if (endboss.isColliding(this.character) && !endboss.dead) { 
+                endboss.bossAttack = true;
+            }
+            
+        });
     }
 
     characterNearEndboss() {

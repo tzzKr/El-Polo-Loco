@@ -61,6 +61,7 @@ class Endboss extends MovableObject {
     targetX;
     targetY;
     patternStyle = 'idle';
+    bossAttack = false;
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
@@ -88,6 +89,8 @@ class Endboss extends MovableObject {
             this.patternStyle = 'hurt';
         } else if (this.alertTriggered) {
             this.patternStyle = 'triggered';
+        } else if (this.bossAttack) {
+            this.patternStyle = 'attack';
         };
     }
 
@@ -110,7 +113,7 @@ class Endboss extends MovableObject {
                 this.hurtPattern();
                 break;
             case 'attack':
-
+                this.endbossAttackingPattern();
                 break;
             case 'dead':
 
@@ -124,17 +127,27 @@ class Endboss extends MovableObject {
         }
     }
 
+    endbossAttackingPattern() {
+        this.speed = 0;
+        this.playAnimation(this.IMAGES_ATTCK);
+        this.bossAttack = false;
+        setTimeout(() => {
+            this.patternStyle = 'targetCharacter';
+
+        }, this.IMAGES_ATTCK.length * 200);
+    }
+
     alertPattern() {
         this.speed = 0;
         this.playAnimation(this.IMAGES_ALERT);
         this.otherDirection = false;
         this.alertTriggered = false;
         setTimeout(() => {
-        this.patternStyle = 'targetCharacter';
+            this.patternStyle = 'targetCharacter';
 
         }, this.IMAGES_ALERT.length * 150);
 
-        
+
     }
 
     hurtPattern() {
@@ -142,8 +155,8 @@ class Endboss extends MovableObject {
         this.playAnimation(this.IMAGES_HURT);
 
         setTimeout(() => {
-        this.patternStyle = 'targetCharacter';
-            
+            this.patternStyle = 'targetCharacter';
+
         }, this.IMAGES_HURT.length * 200);
         this.hit = false;
     }
