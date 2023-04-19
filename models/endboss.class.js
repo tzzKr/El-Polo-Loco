@@ -3,7 +3,7 @@ class Endboss extends MovableObject {
     height = 1217 / 5;
     width = 1045 / 5;
     y = 190;
-    x = 200;
+    x = 2500;
     speed = 10;
 
     offset = {
@@ -99,7 +99,6 @@ class Endboss extends MovableObject {
         this.move();
     }
     pattern() {
-
         switch (this.patternStyle) {
             case 'idle':
                 this.idlePattern();

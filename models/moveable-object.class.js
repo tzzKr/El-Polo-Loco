@@ -19,6 +19,8 @@ class MovableObject extends DrawableObject {
     maxBottles = 1;
     lasthit = 0;
     hurt_sound = new Audio('audio/hurt.mp3');
+    damage = 2;
+    
 
     applyGravity() {
         setInterval(() => {
@@ -78,7 +80,7 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.hurt_sound.currentTime = 0.35;
-        this.energy -= 2;
+        this.energy -= this.damage;
         if (this.energy < 0) {
             this.energy = 0
         } else {

@@ -48,7 +48,6 @@ class World {
         this.detectBottleHit();
         this.characterHitEndboss();
         this.characterNearEndboss();
-        this.bossAttack();
     };
     detectBottleHit() {
         this.throwableObjects.forEach((bottle) => {
@@ -96,19 +95,11 @@ class World {
 
     }
 
-    bossAttack() {
-        this.level.endboss.forEach((endboss) => {
 
-            if (endboss.isColliding(this.character) && !endboss.dead) { 
-                endboss.bossAttack = true;
-            }
-            
-        });
-    }
 
     characterNearEndboss() {
         this.level.endboss.forEach((endboss) => {
-            if (this.character.x <= (endboss.x - 200) && !(endboss.bossArea)) {
+            if (this.character.x > (endboss.x - 500) && !(endboss.bossArea)) {
                 endboss.alertTriggered = true;
                 endboss.bossArea = true;
             }
@@ -118,12 +109,17 @@ class World {
          
     }
     characterHitEndboss() {
+        this.character.damage = 20;
         this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss) && !endboss.hit) {
+            if (this.character.isColliding(endboss) && !endboss.hit && !endboss.dead) {
                 this.character.hit();
+                endboss.bossAttack = true;
+                this.character.characterHurt = true;
                 this.statusBarHealth.setPercentage(this.character.energy, this.character.maxEnergy)
             }
         });
+        this.character.damage = 2;
+
     }
 
     bottleHitEnemy(bottle) {

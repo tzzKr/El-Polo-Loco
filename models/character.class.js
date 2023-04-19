@@ -84,6 +84,8 @@ class Character extends MovableObject {
   world;
   walking_sound = new Audio('audio/Run.mp3');
   jumping_sound = new Audio('audio/Jump.mp3');
+  characterHurt = false;
+
 
   constructor() {
     super().loadImage('img/2_character_pepe/2_walk/W-21.png')
@@ -129,6 +131,15 @@ class Character extends MovableObject {
 
       }
 
+      if (this.characterHurt) {
+        this.knockBack();
+
+        setTimeout(() => {
+        this.characterHurt = false;
+          
+        }, 1000);
+
+      }
 
       this.world.camera_x = -this.x + 100;
 
@@ -161,6 +172,18 @@ class Character extends MovableObject {
     this.jumping_sound.currentTime = 0;
     this.speedY = 15;
     this.jumping_sound.play();
+  }
+
+  knockBack() {
+    if (!this.isAboveGround()) {
+    this.speedY = 3;
+      
+    }
+    this.x -= 5;
+    setTimeout(() => {
+    this.character.characterHurt = false;
+      
+    }, 300);
   }
 }  
 
