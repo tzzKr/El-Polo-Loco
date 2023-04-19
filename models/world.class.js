@@ -187,7 +187,7 @@ class World {
 
             if (this.character.isColliding(powerUp)) {
                 this.collectingBottle.currentTime = 0;
-                this.character.collectBottle();
+                // this.character.collectBottle();
                 this.deleteAfterCollected(this.level.powerUps, powerUp)
 
                 this.statusBarBottle.setPercentage(this.character.powerUps, this.character.maxPowerUps)
