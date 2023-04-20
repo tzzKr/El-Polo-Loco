@@ -108,7 +108,7 @@ class Character extends MovableObject {
         this.walking_sound.pause();
       }
 
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.characterHurt) {
         this.moveRight();
         this.otherDirection = false;
 
@@ -118,7 +118,7 @@ class Character extends MovableObject {
 
       }
 
-      if (this.world.keyboard.LEFT && this.x > -600) {
+      if (this.world.keyboard.LEFT && this.x > -600 && !this.characterHurt) {
         this.moveLeft();
         this.walking_sound.play();
         this.otherDirection = true;
@@ -126,7 +126,7 @@ class Character extends MovableObject {
       }
 
 
-      if (this.world.keyboard.UP && !this.isAboveGround()) {
+      if (this.world.keyboard.UP && !this.isAboveGround() && !this.characterHurt) {
         this.jump()
 
       }

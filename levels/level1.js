@@ -70,7 +70,11 @@ level1 = new Level(
         new CoinObject(1300, 200),
     ],
     [
-        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 200)
+        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 200),
+        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 400),
+        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 300),
+        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 500),
+        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 600),
     ],
     [
         new PowerUpObject('img/8_coin/BorritoPowerUP.png', 200, 200),

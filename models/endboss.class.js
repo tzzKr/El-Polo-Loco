@@ -99,6 +99,7 @@ class Endboss extends MovableObject {
         this.move();
     }
     pattern() {
+        console.log('this.health :>> ', this.health);
         switch (this.patternStyle) {
             case 'idle':
                 this.idlePattern();
@@ -115,7 +116,7 @@ class Endboss extends MovableObject {
                 this.endbossAttackingPattern();
                 break;
             case 'dead':
-
+                this.deadPattern();
                 break;
 
             case 'targetCharacter':
@@ -124,6 +125,11 @@ class Endboss extends MovableObject {
             default:
                 break;
         }
+    }
+
+    deadPattern() {
+        this.speed = 0;
+        this.playAnimation(this.IMAGES_DEAD);
     }
 
     endbossAttackingPattern() {

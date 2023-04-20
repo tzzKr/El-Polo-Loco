@@ -16,7 +16,7 @@ class MovableObject extends DrawableObject {
     coins = 0;
     maxCoins = 11;
     bottles = 0;
-    maxBottles = 1;
+    maxBottles = 5;
     lasthit = 0;
     hurt_sound = new Audio('audio/hurt.mp3');
     damage = 2;

@@ -16,7 +16,7 @@ class World {
     collectingPowerUp = new Audio('audio/Coin.mp3');
     oldValue;
     newValue;
-    bottleThrew = true;
+    bottleThrew = false;
     hitEndboss = false;
 
     constructor(canvas, keyboard) {
@@ -84,7 +84,10 @@ class World {
             endboss.health -= 20;
             if (endboss.health <= 0) {
                 endboss.dead = true;
+                setTimeout(() => {
                 this.deleteAfterCollected(this.level.endboss, endboss);
+                    
+                }, 5000);
             }
             this.EndbossStatus.setPercentage(endboss.health, endboss.maxHealth);
         }
@@ -187,11 +190,10 @@ class World {
 
             if (this.character.isColliding(powerUp)) {
                 this.collectingBottle.currentTime = 0;
-                // this.character.collectBottle();
                 this.deleteAfterCollected(this.level.powerUps, powerUp)
-
-                this.statusBarBottle.setPercentage(this.character.powerUps, this.character.maxPowerUps)
-                // this.collectingBottle.play();
+                this.character.energy += 20;
+                this.statusBarHealth.setPercentage(this.character.energy, 100)
+                this.collectingBottle.play();
             }
         });
     };
@@ -201,15 +203,18 @@ class World {
     }
 
     checkThrowObjects() {
-        this.bottleThrew = true;
-        if (this.keyboard.K && this.character.bottles > 0 && this.bottleThrew) {
+        if (this.keyboard.K && this.character.bottles > 0 && !this.bottleThrew) {
+            this.bottleThrew = true;
 
             this.hitEndboss = false;
-            this.bottleThrew = false;
+            
             let bottle = new ThrowableObject(this.character.x, this.character.y + 50);
             this.throwableObjects.push(bottle);
             this.character.bottles--;
             this.statusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles);
+            setTimeout(() => {
+                this.bottleThrew = false;
+            }, 500);
         };
     };
 
