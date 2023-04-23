@@ -12,11 +12,20 @@ canvas {
     border-radius: 10px;
 }
 .centerCanvas{
-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 !important;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 
 }
 
@@ -42,4 +51,36 @@ z-index: 2;
     height: 100%;
     width: 100%;
     filter: blur(10px);
+}
+.startScreen {
+    position: fixed;
+    z-index: 3;
+    margin: 0 !important;
+    padding: 0;
+    height: 480px;
+    width: 720px;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    gap: 20px;
+    box-sizing: border-box;
+    padding-top: 100px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    background-image: url(img/img/Startscreen.png);
+}
+
+.startButton{
+    width: 300px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.startButton:hover{
+    transform: scale(1.05);
+    transition: 0.025s ease-in-out;
+    background-color: rgba(42, 42, 42, 0.05);
 }
