@@ -8,15 +8,8 @@ function init() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     world = new World(canvas, keyboard)
-    // drawStartScreen();
-
-    // canvas.addEventListener('click', () => {
-    //     console.log('showStartScreen :>> ', showStartScreen);
-    //     if (showStartScreen) {
-    //         startGame();
-    //     }
-    // });
-    // gameLoop();
+    
+    gameLoop();
 
 }
 
@@ -75,30 +68,20 @@ window.addEventListener("keyup", (e) => {
 
 })
 
-// function drawStartScreen() {
-//     ctx.fillStyle = 'black';
-//     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-//     ctx.fillStyle = 'white';
-//     ctx.font = '48px sans-serif';
-//     ctx.textAlign = 'center';
-//     ctx.fillText('Startbildschirm', canvas.width / 2, canvas.height / 2 - 50);
 
-//     ctx.font = '24px sans-serif';
-//     ctx.fillText('Klicken, um zu starten', canvas.width / 2, canvas.height / 2 + 50);
-// }
-
-// function startGame() {
-//     showStartScreen = false;
-// }
+function startGame() {
+    showStartScreen = false;
+}
 
 
 
-// function gameLoop() {
-//     if (showStartScreen) {
-//         drawStartScreen();
-//     } else {
-//         world = new World(canvas, keyboard)
-//     }
-//     requestAnimationFrame(gameLoop);
-// }
+function gameLoop() {
+    console.log('showStartScreen :>> ', showStartScreen);
+    if (showStartScreen) {
+        document.getElementById('startScreen').style.display = 'flex';
+    } else {
+        document.getElementById('startScreen').style.display = 'none';
+    }
+    requestAnimationFrame(gameLoop);
+}
