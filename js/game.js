@@ -3,11 +3,11 @@ let world;
 let keyboard = new Keyboard();
 let showStartScreen = true;
 let ctx;
+let lvlStart = false;
 
 function init() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
-    world = new World(canvas, keyboard)
     
     gameLoop();
 
@@ -72,16 +72,24 @@ window.addEventListener("keyup", (e) => {
 
 function startGame() {
     showStartScreen = false;
+    lvlStart = true;
 }
 
 
 
 function gameLoop() {
-    console.log('showStartScreen :>> ', showStartScreen);
     if (showStartScreen) {
         document.getElementById('startScreen').style.display = 'flex';
     } else {
         document.getElementById('startScreen').style.display = 'none';
+
+        if (lvlStart) {
+            initLevel();
+            world = new World(canvas, keyboard)
+            lvlStart = false;
+    
+        }
+       
     }
     requestAnimationFrame(gameLoop);
 }

@@ -99,7 +99,6 @@ class Endboss extends MovableObject {
         this.move();
     }
     pattern() {
-        console.log('this.health :>> ', this.health);
         switch (this.patternStyle) {
             case 'idle':
                 this.idlePattern();

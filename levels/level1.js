@@ -1,7 +1,7 @@
 
 let level1;
 
-// function initLevel() {
+function initLevel() {
 level1 = new Level(
     [
         new Chicken(),
@@ -86,4 +86,4 @@ level1 = new Level(
 
 );
 
-// }
+}

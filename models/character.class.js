@@ -180,10 +180,7 @@ class Character extends MovableObject {
       
     }
     this.x -= 5;
-    setTimeout(() => {
-    this.character.characterHurt = false;
-      
-    }, 300);
+  
   }
 }  
 
