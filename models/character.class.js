@@ -85,6 +85,7 @@ class Character extends MovableObject {
   walking_sound = new Audio('audio/Run.mp3');
   jumping_sound = new Audio('audio/Jump.mp3');
   characterHurt = false;
+  characterDead = false;
 
 
   constructor() {
@@ -149,6 +150,8 @@ class Character extends MovableObject {
       
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD)
+        this.characterDead = true;
+
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT)
       } else if (this.isAboveGround()) {

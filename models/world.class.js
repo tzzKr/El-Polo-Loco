@@ -18,6 +18,7 @@ class World {
     newValue;
     bottleThrew = false;
     hitEndboss = false;
+    endbossDead = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -46,6 +47,8 @@ class World {
         this.detectBottleCollision();
         this.detectPowerUpCollision();
         this.detectBottleHit();
+        this.detectEndGame();
+        this.gameOverScreen();
         this.characterHitEndboss();
         this.characterNearEndboss();
     };
@@ -84,6 +87,7 @@ class World {
             endboss.health -= 20;
             if (endboss.health <= 0) {
                 endboss.dead = true;
+                this.endbossDead = true;
                 setTimeout(() => {
                 this.deleteAfterCollected(this.level.endboss, endboss);
                     
@@ -200,6 +204,25 @@ class World {
 
     deleteAfterCollected(object, item) {
         object.splice(object.indexOf(item), 1);
+    }
+
+    detectEndGame() {
+        if (this.character.characterDead || this.endbossDead) {
+            this.gameOver = true;
+        }
+            
+    }
+
+    gameOverScreen() {
+        if (!this.gameOver) {
+            return
+        }
+        if (this.character.characterDead) {
+            console.log('character dead :>> ', this.character.characterDead);
+        }
+        if (this.endbossDead) {
+            console.log('endbossDead :>> ', this.endbossDead);
+        }
     }
 
     checkThrowObjects() {
