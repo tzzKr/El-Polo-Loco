@@ -86,6 +86,7 @@ class Character extends MovableObject {
   jumping_sound = new Audio('audio/Jump.mp3');
   characterHurt = false;
   characterDead = false;
+  gameover = false;
 
 
   constructor() {
@@ -109,7 +110,7 @@ class Character extends MovableObject {
         this.walking_sound.pause();
       }
 
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.characterHurt) {
+      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.characterHurt && !this.gameover) {
         this.moveRight();
         this.otherDirection = false;
 
@@ -119,7 +120,7 @@ class Character extends MovableObject {
 
       }
 
-      if (this.world.keyboard.LEFT && this.x > -600 && !this.characterHurt) {
+      if (this.world.keyboard.LEFT && this.x > -600 && !this.characterHurt && !this.gameover) {
         this.moveLeft();
         this.walking_sound.play();
         this.otherDirection = true;
@@ -127,12 +128,12 @@ class Character extends MovableObject {
       }
 
 
-      if (this.world.keyboard.UP && !this.isAboveGround() && !this.characterHurt) {
+      if (this.world.keyboard.UP && !this.isAboveGround() && !this.characterHurt && !this.gameover) {
         this.jump()
 
       }
 
-      if (this.characterHurt) {
+      if (this.characterHurt && !this.gameover) {
         this.knockBack();
 
         setTimeout(() => {

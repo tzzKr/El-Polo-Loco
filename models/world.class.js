@@ -208,20 +208,22 @@ class World {
 
     detectEndGame() {
         if (this.character.characterDead || this.endbossDead) {
-            this.gameOver = true;
+            this.character.gameover = true;
+            this.character.speedX = 0;
         }
             
     }
 
     gameOverScreen() {
-        if (!this.gameOver) {
-            return
-        }
+        
         if (this.character.characterDead) {
             console.log('character dead :>> ', this.character.characterDead);
+            document.getElementById('youlostScreen').style.display = 'block';
         }
         if (this.endbossDead) {
             console.log('endbossDead :>> ', this.endbossDead);
+            document.getElementById('gameoverScreen').style.display = 'block';
+
         }
     }
 
