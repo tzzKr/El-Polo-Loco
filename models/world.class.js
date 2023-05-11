@@ -182,7 +182,6 @@ class World {
                 this.collectingBottle.currentTime = 0;
                 this.character.collectBottle();
                 this.deleteAfterCollected(this.level.bottles, bottles)
-
                 this.statusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles)
                 this.collectingBottle.play();
             }

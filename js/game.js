@@ -4,7 +4,6 @@ let keyboard = new Keyboard();
 let showStartScreen = true;
 let ctx;
 let lvlStart = false;
-let lvlEnd = false;
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -79,7 +78,6 @@ function startGame() {
 function backToMainScreen() {
     showStartScreen = true;
     lvlStart = false;
-    lvlEnd = false;
     world = null;
     
 }
