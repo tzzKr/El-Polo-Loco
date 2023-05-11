@@ -76,6 +76,13 @@ function startGame() {
     lvlStart = true;
 }
 
+function backToMainScreen() {
+    showStartScreen = true;
+    lvlStart = false;
+    lvlEnd = false;
+    world = null;
+    
+}
 
 
 function gameLoop() {
