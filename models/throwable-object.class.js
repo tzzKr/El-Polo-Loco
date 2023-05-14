@@ -16,7 +16,7 @@ class ThrowableObject extends MovableObject {
 
     ]
     throwBottle = new Audio('audio/Throw.mp3');
-    speedX = 10;
+    speedX = 3;
     bottleDestroyed = false;
     destroyedImagesCount = this.IMAGES_DESTROYED.length;
     destroyedImagesPlayed = 0;
@@ -58,7 +58,7 @@ class ThrowableObject extends MovableObject {
             this.playAnimation(this.IMAGES_DESTROYED);
             setTimeout(() => {
                 this.animateSplash();
-            }, 500/5);
+            }, 500 / 5);
         }
     }
 
@@ -68,15 +68,8 @@ class ThrowableObject extends MovableObject {
             this.playAnimation(this.IMAGES_DESTROYED);
         }
     }
-    hitGround() {
-        console.log('this.y :>> ', this.y);
-        if (this.y == 300) {
-            this.speedY = 0;
-            this.playAnimation(this.IMAGES_DESTROYED);
-            this.y = 300;
 
-        }
-    }
+    
 
 
 }

@@ -4,12 +4,12 @@ let level1;
 function initLevel() {
 level1 = new Level(
     [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
+        new Chicken(300),
+        new Chicken(500),
+        new Chicken(1000),
+        new Chicken(1300),
+        new Chicken(1700),
+        new Chicken(2000),
     ],
     [
         new Cloud('img/5_background/layers/4_clouds/1.png'),
@@ -59,22 +59,16 @@ level1 = new Level(
     [
         new CoinObject(300, 200),
         new CoinObject(400, 200),
-        new CoinObject(500, 200),
-        new CoinObject(600, 200),
-        new CoinObject(700, 200),
-        new CoinObject(800, 200),
-        new CoinObject(900, 200),
-        new CoinObject(1000, 200),
-        new CoinObject(1100, 200),
-        new CoinObject(1200, 200),
-        new CoinObject(1300, 200),
+        new CoinObject(700, 300),
+        new CoinObject(1500, 100),
+        new CoinObject(2000, 200),
     ],
     [
         new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 200),
         new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 400),
-        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 300),
-        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 500),
-        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 600),
+        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 700),
+        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 1500),
+        new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 2000),
     ],
     [
         new PowerUpObject('img/8_coin/BorritoPowerUP.png', 200, 200),

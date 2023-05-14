@@ -21,6 +21,7 @@ class World {
     endbossDead = false;
     runIntervall = null;
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -59,6 +60,16 @@ class World {
             this.bottleHitEnemy(bottle);
             this.bottleHitEndboss(bottle);
 
+            if (bottle.y >= 350) {
+                bottle.speedY = 0;
+                bottle.speedX = 0;
+                bottle.bottleDestroyed = true;
+                bottle.y = 350;
+                setTimeout(() => {
+                    this.deleteAfterCollected(this.throwableObjects, bottle);
+                }, 200);
+            }
+
         });
 
     };
@@ -90,8 +101,8 @@ class World {
                 endboss.dead = true;
                 this.endbossDead = true;
                 setTimeout(() => {
-                this.deleteAfterCollected(this.level.endboss, endboss);
-                    
+                    this.deleteAfterCollected(this.level.endboss, endboss);
+
                 }, 5000);
             }
             this.EndbossStatus.setPercentage(endboss.health, endboss.maxHealth);
@@ -114,7 +125,7 @@ class World {
             endboss.targetX = this.character.x;
             endboss.targetY = this.character.y;
         });
-         
+
     }
     characterHitEndboss() {
         this.character.damage = 20;
@@ -213,22 +224,21 @@ class World {
             if (this.runIntervall) {
                 clearInterval(this.runIntervall);
                 clearInterval(characterIntervalMove);
-        clearInterval(characterStatusInterval);
-        clearInterval(gravityInterval);
-        // clearInterval(bossPatternInterval);
-        clearInterval(chickenWalkInterval);
-        clearInterval(chickenStatusInterval);
-        clearInterval(cloudInterval);
-        clearInterval(coinInterval);
-                this.runIntervall = null; 
+                clearInterval(characterStatusInterval);
+                clearInterval(gravityInterval);
+                clearInterval(chickenWalkInterval);
+                clearInterval(chickenStatusInterval);
+                clearInterval(cloudInterval);
+                clearInterval(coinInterval);
+                this.runIntervall = null;
             }
-          
+
         }
-            
+
     }
 
     gameOverScreen() {
-        
+
         if (this.character.characterDead) {
             document.getElementById('youlostScreen').style.display = 'block';
         }
@@ -243,7 +253,7 @@ class World {
             this.bottleThrew = true;
 
             this.hitEndboss = false;
-            
+
             let bottle = new ThrowableObject(this.character.x, this.character.y + 50);
             this.throwableObjects.push(bottle);
             this.character.bottles--;

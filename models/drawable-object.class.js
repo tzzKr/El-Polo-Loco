@@ -30,10 +30,10 @@ class DrawableObject {
         
 
         if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof BottleObject || this instanceof CoinObject || this instanceof PowerUpObject || this instanceof ThrowableObject) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x + this.offset.x, this.y + this.offset.y,(this.x + this.width - this.offset.width) - (this.x + this.offset.x),(this.y + this.height - this.offset.height) - (this.y + this.offset.y));
+            // ctx.beginPath();
+            // ctx.lineWidth = '0';
+            // ctx.strokeStyle = '';
+            // ctx.rect(this.x + this.offset.x, this.y + this.offset.y,(this.x + this.width - this.offset.width) - (this.x + this.offset.x),(this.y + this.height - this.offset.height) - (this.y + this.offset.y));
             ctx.stroke();
         }
     }
