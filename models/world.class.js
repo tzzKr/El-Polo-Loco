@@ -19,6 +19,7 @@ class World {
     bottleThrew = false;
     hitEndboss = false;
     endbossDead = false;
+    runIntervall = null;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -33,7 +34,7 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        this.runIntervall = setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
 
@@ -209,6 +210,11 @@ class World {
         if (this.character.characterDead || this.endbossDead) {
             this.character.gameover = true;
             this.character.speedX = 0;
+            if (this.runIntervall) {
+                clearInterval(this.runIntervall);
+                this.runIntervall = null; 
+            }
+          
         }
             
     }
