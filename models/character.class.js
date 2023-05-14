@@ -104,7 +104,7 @@ class Character extends MovableObject {
 
   animate() {
 
-    setInterval(() => {
+    characterIntervalMove = setInterval(() => {
 
       if (!this.walking_sound.paused) {
         this.walking_sound.pause();
@@ -147,7 +147,7 @@ class Character extends MovableObject {
 
     }, 1000 / 60)
 
-    setInterval(() => {
+    characterStatusInterval = setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD)
         this.characterDead = true;

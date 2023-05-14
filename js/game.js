@@ -4,6 +4,14 @@ let keyboard = new Keyboard();
 let showStartScreen = true;
 let ctx;
 let lvlStart = false;
+let characterIntervalMove = null;
+let characterStatusInterval = null;
+let gravityInterval = null;
+let bossPatternInterval = null;
+let chickenWalkInterval = null;
+let chickenStatusInterval = null;
+let cloudInterval = null;
+let coinInterval = null;
 
 function init() {
     
@@ -84,9 +92,20 @@ function backToMainScreen() {
 function gameLoop() {
     if (showStartScreen) {
         document.getElementById('startScreen').style.display = 'flex';
+        document.getElementById('gameoverScreen').style.display = 'none'; 
+        document.getElementById('youlostScreen').style.display = 'none'; 
         canvas = null;
         ctx = null;
         world = null;
+        // clearInterval(characterIntervalMove);
+        // clearInterval(characterStatusInterval);
+        // clearInterval(gravityInterval);
+        clearInterval(bossPatternInterval);
+        // clearInterval(chickenWalkInterval);
+        // clearInterval(chickenStatusInterval);
+        // clearInterval(cloudInterval);
+        // clearInterval(coinInterval);
+
 
     } else if (lvlStart) {
         document.getElementById('startScreen').style.display = 'none';

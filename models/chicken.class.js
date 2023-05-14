@@ -38,11 +38,11 @@ class Chicken extends MovableObject {
 
   animate() {
 
-    setInterval(() => {
+    chickenWalkInterval = setInterval(() => {
       this.moveLeft();
     }, 1000 / 60);
 
-    setInterval(() => {
+    chickenStatusInterval = setInterval(() => {
       if (!this.dead) {
         this.chickenWalk();
       } else {

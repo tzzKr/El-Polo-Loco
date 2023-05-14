@@ -212,6 +212,14 @@ class World {
             this.character.speedX = 0;
             if (this.runIntervall) {
                 clearInterval(this.runIntervall);
+                clearInterval(characterIntervalMove);
+        clearInterval(characterStatusInterval);
+        clearInterval(gravityInterval);
+        // clearInterval(bossPatternInterval);
+        clearInterval(chickenWalkInterval);
+        clearInterval(chickenStatusInterval);
+        clearInterval(cloudInterval);
+        clearInterval(coinInterval);
                 this.runIntervall = null; 
             }
           
@@ -222,11 +230,9 @@ class World {
     gameOverScreen() {
         
         if (this.character.characterDead) {
-            console.log('character dead :>> ', this.character.characterDead);
             document.getElementById('youlostScreen').style.display = 'block';
         }
         if (this.endbossDead) {
-            console.log('endbossDead :>> ', this.endbossDead);
             document.getElementById('gameoverScreen').style.display = 'block';
 
         }

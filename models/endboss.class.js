@@ -76,10 +76,10 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        bossPatternInterval = setInterval(() => {
             this.pattern();
             this.setPatternStyle();
-        }, 200);
+        }, 100);
     }
 
     setPatternStyle() {
