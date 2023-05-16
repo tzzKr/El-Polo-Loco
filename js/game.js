@@ -120,3 +120,12 @@ function gameLoop() {
     
     requestAnimationFrame(gameLoop);
 }
+
+function openTutorial() {
+    document.getElementById('tutorialScreen').style.display = 'flex';
+}
+
+function closeTutorial() {
+    document.getElementById('tutorialScreen').style.display = 'none';
+    
+}

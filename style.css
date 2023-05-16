@@ -84,6 +84,31 @@ canvas {
     transition: 0.025s ease-in-out;
     background-color: rgba(42, 42, 42, 0.05);
 }
+.tutorialScreen {
+    position: fixed;
+    z-index: 4;
+    margin: 0 !important;
+    padding: 0;
+    height: 480px;
+    width: 720px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-image: url(img/img/Startscreen.png);
+    
+}
+.closeBtn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(img/img/Icons/close.svg);
+    filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(171deg) brightness(109%) contrast(101%);
+    cursor: pointer;
+
+}
 
 .endScreenPic {
     height: 480px;
