@@ -4,6 +4,7 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 canvas {
@@ -11,7 +12,22 @@ canvas {
     z-index: 2;
     border-radius: 10px;
 }
-.centerCanvas{
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.209);
+    color: rgb(233, 233, 233);
+}
+
+th, td {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 30px;
+    padding-right: 40px;
+}
+
+.centerCanvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -21,7 +37,7 @@ canvas {
     padding: 0;
     height: 100%;
     width: 100%;
-    
+
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -30,13 +46,13 @@ canvas {
 }
 
 .Logo {
-    
-        position: relative;
-        z-index: 3;
-        max-width: 100vw;
-        margin-top: 50px;
-        width: auto;
-    
+
+    position: relative;
+    z-index: 3;
+    max-width: 100vw;
+    margin-top: 50px;
+    width: auto;
+
 }
 
 .bgimage {
@@ -52,6 +68,7 @@ canvas {
     width: 100%;
     filter: blur(10px);
 }
+
 .startScreen {
     position: fixed;
     z-index: 3;
@@ -69,21 +86,27 @@ canvas {
     justify-content: center;
     border-radius: 10px;
     background-image: url(img/img/Startscreen.png);
+    font-family: 'Roboto', sans-serif;
+
 }
 
-.startButton{
+.startButton {
     width: 300px;
     height: 45px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
 }
 
-.startButton:hover{
+.startButton:hover {
     transform: scale(1.05);
     transition: 0.025s ease-in-out;
     background-color: rgba(42, 42, 42, 0.05);
 }
+
 .tutorialScreen {
     position: fixed;
     z-index: 4;
@@ -91,12 +114,17 @@ canvas {
     padding: 0;
     height: 480px;
     width: 720px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 480px;
     box-sizing: border-box;
     border-radius: 10px;
     background-image: url(img/img/Startscreen.png);
     
 }
-.closeBtn{
+
+.closeBtn {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -114,7 +142,8 @@ canvas {
     height: 480px;
     width: 720px;
 }
-.endscreen{
+
+.endscreen {
     position: fixed;
     z-index: 3;
     margin: 0 !important;
