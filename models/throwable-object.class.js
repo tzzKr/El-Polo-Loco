@@ -15,7 +15,7 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
 
     ]
-    speedX = 3;
+    speedX = 10;
     bottleDestroyed = false;
     destroyedImagesCount = this.IMAGES_DESTROYED.length;
     destroyedImagesPlayed = 0;
