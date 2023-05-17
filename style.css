@@ -5,6 +5,7 @@ body {
     flex-direction: column;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
+    height: 100vh;
 }
 
 canvas {
@@ -28,7 +29,7 @@ th, td {
 }
 
 .centerCanvas {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -37,7 +38,6 @@ th, td {
     padding: 0;
     height: 100%;
     width: 100%;
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -47,12 +47,12 @@ th, td {
 
 .Logo {
 
-    position: relative;
+    position: absolute;
     z-index: 3;
+    top: 20px;
     max-width: 100vw;
     margin-top: 50px;
     width: auto;
-
 }
 
 .bgimage {
@@ -71,7 +71,7 @@ th, td {
 
 .startScreen {
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     margin: 0 !important;
     padding: 0;
     height: 480px;
@@ -109,7 +109,7 @@ th, td {
 
 .tutorialScreen {
     position: fixed;
-    z-index: 4;
+    z-index: 5;
     margin: 0 !important;
     padding: 0;
     height: 480px;
@@ -124,7 +124,7 @@ th, td {
 }
 .settingsScreen {
     position: fixed;
-    z-index: 4;
+    z-index: 5;
     margin: 0 !important;
     padding: 0;
     height: 480px;
@@ -176,7 +176,7 @@ th, td {
 
 .endscreen {
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     margin: 0 !important;
     padding: 0;
     height: 480px;
@@ -184,4 +184,25 @@ th, td {
     box-sizing: border-box;
     display: none;
 
+}
+.gameOverlay {
+    position: absolute;
+    z-index: 3;
+    margin: 0 !important;
+    padding-top: 30px;
+    
+    height: 480px;
+    width: 720px;
+    display: flex;
+    justify-content: center;
+    /* backdrop-filter: blur(10px); */
+    
+    
+}
+.pauseBtn {
+    filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(171deg) brightness(109%) contrast(101%);
+    height: 48px;
+    width: 48px;
+cursor: pointer;
+    
 }

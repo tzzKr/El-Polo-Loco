@@ -15,6 +15,7 @@ let coinInterval = null;
 let randomNum = getRandomBgMusic(1, 2);
 let hitbox = false;
 let drawAnimate;
+let pause = false;
 
 function init() {
 
@@ -162,4 +163,12 @@ function toggleHitbox() {
     }
     console.log('hitbox :>> ', hitbox);
 
+}
+
+function pauseGame() {
+    if (pause) {
+        pause = false;
+    }else{
+        pause = true;
+    }
 }

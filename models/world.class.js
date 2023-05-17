@@ -11,7 +11,7 @@ class World {
     statusBarCoins = new StatusBarCoins();
     EndbossStatus = new StatusBarEndbossHealth();
     throwableObjects = [];
-   
+
     oldValue;
     newValue;
     bottleThrew = false;
@@ -34,9 +34,10 @@ class World {
 
     run() {
         this.runIntervall = setInterval(() => {
-            this.checkCollisions();
-            this.checkThrowObjects();
-
+            if (!pause) {
+                this.checkCollisions();
+                this.checkThrowObjects();
+            }
         }, 100);
     }
 
@@ -287,7 +288,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         //draw wird wieder aufgerufen
         let self = this;
-        
+
         if (!showStartScreen) {
             drawAnimate = requestAnimationFrame(function () {
                 self.draw();

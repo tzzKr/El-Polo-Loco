@@ -19,13 +19,15 @@ class MovableObject extends DrawableObject {
     maxBottles = 5;
     lasthit = 0;
     damage = 2;
-    
+
 
     applyGravity() {
         gravityInterval = setInterval(() => {
-            if (this.isAboveGround() || this.speedY > 0) {
-                this.y -= this.speedY;
-                this.speedY -= this.acceleration;
+            if (!pause) {
+                if (this.isAboveGround() || this.speedY > 0) {
+                    this.y -= this.speedY;
+                    this.speedY -= this.acceleration;
+                }
             }
         }, 1000 / 25);
     }
