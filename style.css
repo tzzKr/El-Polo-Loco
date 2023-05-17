@@ -121,7 +121,22 @@ th, td {
     box-sizing: border-box;
     border-radius: 10px;
     background-image: url(img/img/Startscreen.png);
-    
+}
+.settingsScreen {
+    position: fixed;
+    z-index: 4;
+    margin: 0 !important;
+    padding: 0;
+    height: 480px;
+    width: 720px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 480px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: white;
+    background-image: url(img/img/Startscreen.png);
 }
 
 .closeBtn {
@@ -132,10 +147,26 @@ th, td {
     height: 48px;
     border: 0;
     background-color: rgba(0, 0, 0, 0);
-    background-image: url(img/img/Icons/close.svg);
+    background-image: url(img/img/Icons/Back.svg);
     filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(171deg) brightness(109%) contrast(101%);
     cursor: pointer;
 
+}
+
+.settingOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.settingOptions:hover {
+    transform: scale(1.05);
+    transition: 0.025s ease-in-out;
 }
 
 .endScreenPic {

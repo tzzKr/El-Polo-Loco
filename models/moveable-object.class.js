@@ -18,7 +18,6 @@ class MovableObject extends DrawableObject {
     bottles = 0;
     maxBottles = 5;
     lasthit = 0;
-    hurt_sound = new Audio('audio/hurt.mp3');
     damage = 2;
     
 
@@ -79,14 +78,14 @@ class MovableObject extends DrawableObject {
 
 
     hit() {
-        this.hurt_sound.currentTime = 0.35;
+        hurt_sound.currentTime = 0.35;
         this.energy -= this.damage;
         if (this.energy < 0) {
             this.energy = 0
         } else {
             this.lasthit = new Date().getTime();
         }
-        this.hurt_sound.play();
+        hurt_sound.play();
     }
 
 

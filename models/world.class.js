@@ -11,9 +11,7 @@ class World {
     statusBarCoins = new StatusBarCoins();
     EndbossStatus = new StatusBarEndbossHealth();
     throwableObjects = [];
-    collectingCoin = new Audio('audio/Coin.mp3');
-    collectingBottle = new Audio('audio/CollectBottle.mp3');
-    collectingPowerUp = new Audio('audio/Coin.mp3');
+   
     oldValue;
     newValue;
     bottleThrew = false;
@@ -163,7 +161,7 @@ class World {
             if (this.character.isCollidingTop(enemy) && this.isValueDecreasing(this.oldValue, this.newValue)) {
                 this.character.jump();
                 enemy.dead = true;
-                enemy.chicken_dead_sound.play();
+                chicken_dead_sound.play();
                 setTimeout(() => {
                     this.deleteAfterCollected(this.level.enemies, enemy)
                 }, 500);
@@ -178,11 +176,11 @@ class World {
         this.level.coins.forEach((coin) => {
 
             if (this.character.isColliding(coin)) {
-                this.collectingCoin.currentTime = 0;
+                collectingCoin.currentTime = 0;
                 this.character.collectCoin();
                 this.deleteAfterCollected(this.level.coins, coin);
                 this.statusBarCoins.setPercentage(this.character.coins, this.character.maxCoins);
-                this.collectingCoin.play();
+                collectingCoin.play();
             }
         });
     };
@@ -191,11 +189,11 @@ class World {
         this.level.bottles.forEach((bottles) => {
 
             if (this.character.isColliding(bottles)) {
-                this.collectingBottle.currentTime = 0;
+                collectingBottle.currentTime = 0;
                 this.character.collectBottle();
                 this.deleteAfterCollected(this.level.bottles, bottles)
                 this.statusBarBottle.setPercentage(this.character.bottles, this.character.maxBottles)
-                this.collectingBottle.play();
+                collectingBottle.play();
             }
         });
     };
@@ -204,11 +202,11 @@ class World {
         this.level.powerUps.forEach((powerUp) => {
 
             if (this.character.isColliding(powerUp)) {
-                this.collectingBottle.currentTime = 0;
+                collectingBottle.currentTime = 0;
                 this.deleteAfterCollected(this.level.powerUps, powerUp)
                 this.character.energy += 20;
                 this.statusBarHealth.setPercentage(this.character.energy, 100)
-                this.collectingBottle.play();
+                collectingBottle.play();
             }
         });
     };
@@ -289,9 +287,12 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         //draw wird wieder aufgerufen
         let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
+        
+        if (!showStartScreen) {
+            drawAnimate = requestAnimationFrame(function () {
+                self.draw();
+            });
+        }
     }
 
     addObjectsToMap(objects) {

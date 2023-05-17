@@ -14,7 +14,6 @@ class Chicken extends MovableObject {
     'img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
 
   ]
-  chicken_dead_sound = new Audio('audio/Chicken.mp3');
 
   hit = false;
 

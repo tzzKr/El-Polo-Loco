@@ -82,8 +82,7 @@ class Character extends MovableObject {
   ]
   count = 0;
   world;
-  walking_sound = new Audio('audio/Run.mp3');
-  jumping_sound = new Audio('audio/Jump.mp3');
+ 
   characterHurt = false;
   characterDead = false;
   gameover = false;
@@ -106,15 +105,15 @@ class Character extends MovableObject {
 
     characterIntervalMove = setInterval(() => {
 
-      if (!this.walking_sound.paused) {
-        this.walking_sound.pause();
+      if (!walking_sound.paused) {
+        walking_sound.pause();
       }
 
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.characterHurt && !this.gameover) {
         this.moveRight();
         this.otherDirection = false;
 
-        this.walking_sound.play().catch((error) => {
+        walking_sound.play().catch((error) => {
           console.error("Error playing audio:", error);
         })
 
@@ -122,7 +121,7 @@ class Character extends MovableObject {
 
       if (this.world.keyboard.LEFT && this.x > -600 && !this.characterHurt && !this.gameover) {
         this.moveLeft();
-        this.walking_sound.play();
+        walking_sound.play();
         this.otherDirection = true;
 
       }
@@ -172,9 +171,9 @@ class Character extends MovableObject {
 
 
   jump() {
-    this.jumping_sound.currentTime = 0;
+    jumping_sound.currentTime = 0;
     this.speedY = 15;
-    this.jumping_sound.play();
+    jumping_sound.play();
   }
 
   knockBack() {

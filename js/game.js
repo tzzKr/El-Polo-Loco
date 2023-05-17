@@ -12,9 +12,12 @@ let chickenWalkInterval = null;
 let chickenStatusInterval = null;
 let cloudInterval = null;
 let coinInterval = null;
+let randomNum = getRandomBgMusic(1, 2);
+let hitbox = false;
+let drawAnimate;
 
 function init() {
-    
+
     gameLoop();
 
 }
@@ -77,26 +80,39 @@ window.addEventListener("keyup", (e) => {
 
 
 function startGame() {
+    audioVolume();
     showStartScreen = false;
     lvlStart = true;
+    musicArray[randomNum = 1].play();
 
 }
+
+function getRandomBgMusic(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  
+  
 
 function backToMainScreen() {
     showStartScreen = true;
     lvlStart = false;
-    
+
 }
 
 
 function gameLoop() {
     if (showStartScreen) {
         document.getElementById('startScreen').style.display = 'flex';
-        document.getElementById('gameoverScreen').style.display = 'none'; 
-        document.getElementById('youlostScreen').style.display = 'none'; 
+        document.getElementById('gameoverScreen').style.display = 'none';
+        document.getElementById('youlostScreen').style.display = 'none';
         canvas = null;
         ctx = null;
         world = null;
+        music1.pause();
+        music2.pause();
+        cancelAnimationFrame(drawAnimate);
         // clearInterval(characterIntervalMove);
         // clearInterval(characterStatusInterval);
         // clearInterval(gravityInterval);
@@ -116,8 +132,9 @@ function gameLoop() {
         world = new World(canvas, keyboard)
         lvlStart = false;
 
+
     }
-    
+
     requestAnimationFrame(gameLoop);
 }
 
@@ -127,5 +144,22 @@ function openTutorial() {
 
 function closeTutorial() {
     document.getElementById('tutorialScreen').style.display = 'none';
-    
+
+}
+function openSettings() {
+    document.getElementById('settingScreen').style.display = 'flex';
+}
+function closeSettings() {
+    document.getElementById('settingScreen').style.display = 'none';
+}
+
+
+function toggleHitbox() {
+    if (hitbox) {
+        hitbox = false;
+    } else {
+        hitbox = true;
+    }
+    console.log('hitbox :>> ', hitbox);
+
 }
