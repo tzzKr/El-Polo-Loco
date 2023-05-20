@@ -93,20 +93,26 @@
         </div>
         <div class="settingsScreen" style="display: none;" id="settingScreen">
             <button onclick="closeSettings()" class="closeBtn"></button>
-            
+
             <div class="settingOptions" onclick="toggleAudio()">
                 <img id="soundImg" src="img/img/Icons/volume.svg" alt="">
                 <div>ToggleSound</div>
 
             </div>
-        
+
             <div class="settingOptions" onclick="toggleHitbox()">
-                <img src="img/img/Icons/Hitbox.svg" alt="">
+                <img id="hitboxIcon" src="img/img/Icons/Hitbox.svg" alt="">
                 <div>ToggleHitbox</div>
             </div>
         </div>
-        <div class="gameOverlay">
-            <img onclick="pauseGame()" class="pauseBtn" src="img/img/Icons/pause.svg" alt="">
+        <div class="gameOverlay" id="pauseScreen">
+            <img id="pauseGameIcon" onclick="pauseGame()" class="pauseBtn" src="img/img/Icons/pause.svg" alt="">
+            <div id="pauseIconContainer" class="pauseIconContainer" style="display: none;">
+                <img onclick="backToMainScreen()" class="pauseIcons" src="img/img/Icons/home.svg" alt="home">
+                <img onclick="toggleHitbox()" id="hitboxIconPause" class="pauseIcons" src="img/img/Icons/Hitbox.svg" alt="Hitbox">
+                <img onclick="toggleAudio()" id="pauseVolumeBtn" class="pauseIcons" src="img/img/Icons/volume.svg" alt="Music">
+            </div>
+
         </div>
         <canvas id="canvas" width="720" height="480"></canvas>
     </div>

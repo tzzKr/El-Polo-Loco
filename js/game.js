@@ -113,17 +113,9 @@ function gameLoop() {
         world = null;
         music1.pause();
         music2.pause();
+        pause = false;
         cancelAnimationFrame(drawAnimate);
-        // clearInterval(characterIntervalMove);
-        // clearInterval(characterStatusInterval);
-        // clearInterval(gravityInterval);
         clearInterval(bossPatternInterval);
-        // clearInterval(chickenWalkInterval);
-        // clearInterval(chickenStatusInterval);
-        // clearInterval(cloudInterval);
-        // clearInterval(coinInterval);
-
-
     } else if (lvlStart) {
         document.getElementById('startScreen').style.display = 'none';
 
@@ -157,9 +149,15 @@ function closeSettings() {
 
 function toggleHitbox() {
     if (hitbox) {
-        hitbox = false;
+        hitbox = false; 
+        document.getElementById('hitboxIcon').src = 'img/img/Icons/Hitbox.svg'
+        document.getElementById('hitboxIconPause').src = 'img/img/Icons/Hitbox.svg'
+
     } else {
         hitbox = true;
+        document.getElementById('hitboxIcon').src = 'img/img/Icons/hitboxfilled.svg'
+        document.getElementById('hitboxIconPause').src = 'img/img/Icons/hitboxfilled.svg'
+
     }
     console.log('hitbox :>> ', hitbox);
 
@@ -168,7 +166,21 @@ function toggleHitbox() {
 function pauseGame() {
     if (pause) {
         pause = false;
+        document.getElementById('pauseGameIcon').src = 'img/img/Icons/pause.svg';
+
+        document.getElementById('pauseScreen').style = 'backdrop-filter: unset';
+        document.getElementById('pauseIconContainer').style.display = 'none';
+
+
     }else{
+        document.getElementById('pauseGameIcon').src = 'img/img/Icons/play.svg';
+
+        document.getElementById('pauseScreen').style = 'backdrop-filter: blur(5px)';
+        document.getElementById('pauseIconContainer').style.display = 'flex';
         pause = true;
     }
 }
+
+
+
+

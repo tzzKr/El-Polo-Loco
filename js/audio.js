@@ -20,9 +20,11 @@ function toggleAudio() {
         globalVolume = 0.2;
         audioVolume();
         document.getElementById('soundImg').src = 'img/img/Icons/volume.svg'
+        document.getElementById('pauseVolumeBtn').src = 'img/img/Icons/volume.svg'
     } else {
         globalVolume = 0;
         document.getElementById('soundImg').src = 'img/img/Icons/volume_off.svg'
+        document.getElementById('pauseVolumeBtn').src = 'img/img/Icons/volume_off.svg'
 
         audioVolume();
     }

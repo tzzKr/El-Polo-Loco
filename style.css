@@ -190,19 +190,41 @@ th, td {
     z-index: 3;
     margin: 0 !important;
     padding-top: 30px;
-    
     height: 480px;
     width: 720px;
     display: flex;
-    justify-content: center;
-    /* backdrop-filter: blur(10px); */
+    align-items: center;
+    gap: 150px;
+    flex-direction: column;
     
     
 }
 .pauseBtn {
-    filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(171deg) brightness(109%) contrast(101%);
+    filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(171deg) brightness(229%) contrast(101%);
     height: 48px;
     width: 48px;
 cursor: pointer;
+    
+}
+
+.pauseIcons {
+    height: 70px;
+    width: 70px;
+    filter: invert(48%) sepia(24%) saturate(6259%) hue-rotate(88deg) brightness(50%) contrast(92%);
+    cursor: pointer;
+}
+.pauseIcons:hover {
+    filter: invert(48%) sepia(24%) saturate(6259%) hue-rotate(88deg) brightness(100%) contrast(92%);
+    transform: scale(1.05);
+    transition: 0.025s ease-in-out;
+
+}
+.pauseIconContainer{
+    width: 720px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
     
 }
