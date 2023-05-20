@@ -6,11 +6,13 @@ body {
     justify-content: center;
     font-family: 'Roboto', sans-serif;
     height: 100vh;
+    margin: 0;
 }
 
 canvas {
     background-color: black;
     z-index: 2;
+    display: block;
     border-radius: 10px;
 }
 
@@ -226,5 +228,17 @@ cursor: pointer;
     align-items: center;
     justify-content: space-evenly;
     margin-top: 20px;
-    
+
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
 }
