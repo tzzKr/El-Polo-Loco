@@ -1,13 +1,16 @@
 body {
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
     font-family: 'Roboto', sans-serif;
     height: 100vh;
     margin: 0;
+    background-image: url(img/img/BG.svg);
+    backdrop-filter: blur(10px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: black;
 }
+
 
 canvas {
     background-color: black;
@@ -30,21 +33,19 @@ th, td {
     padding-right: 40px;
 }
 
-.centerCanvas {
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0 !important;
-    padding: 0;
-    height: 100%;
+.mainContainer {
+    height: 100vh;
     width: 100%;
     display: flex;
-    align-items: center;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
 
+.centerCanvas {
+    position: relative;
+    aspect-ratio: 720/480;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .Logo {
@@ -76,10 +77,12 @@ th, td {
     z-index: 4;
     margin: 0 !important;
     padding: 0;
-    height: 480px;
-    width: 720px;
+    max-height: 480px;
+    max-width: 720px;
+    aspect-ratio: 720/480;
+    height: 100%;
+    width: auto;
     background-color: rgb(0, 0, 0);
-    display: flex;
     gap: 20px;
     box-sizing: border-box;
     padding-top: 100px;
@@ -88,12 +91,16 @@ th, td {
     justify-content: center;
     border-radius: 10px;
     background-image: url(img/img/Startscreen.png);
+    background-position: center;
     font-family: 'Roboto', sans-serif;
-
 }
 
+
+
+
 .startButton {
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
     height: 45px;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.3);
@@ -114,31 +121,40 @@ th, td {
     z-index: 5;
     margin: 0 !important;
     padding: 0;
-    height: 480px;
-    width: 720px;
-    display: flex;
     justify-content: center;
     align-items: center;
-    height: 480px;
     box-sizing: border-box;
     border-radius: 10px;
     background-image: url(img/img/Startscreen.png);
+    max-height: 480px;
+    max-width: 720px;
+    aspect-ratio: 720/480;
+    height: 100%;
+    width: auto;
+    background-color: rgb(0, 0, 0);
+    background-position: center;
+    font-family: 'Roboto', sans-serif;
 }
 .settingsScreen {
     position: fixed;
     z-index: 5;
     margin: 0 !important;
     padding: 0;
-    height: 480px;
-    width: 720px;
-    display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 480px;
     box-sizing: border-box;
     border-radius: 10px;
     color: white;
     background-image: url(img/img/Startscreen.png);
+    max-height: 480px;
+    max-width: 720px;
+    aspect-ratio: 720/480;
+    height: 100%;
+    width: auto;
+    background-color: rgb(0, 0, 0);
+    background-position: center;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .closeBtn {
@@ -191,14 +207,23 @@ th, td {
     position: absolute;
     z-index: 3;
     margin: 0 !important;
-    padding-top: 30px;
-    height: 480px;
-    width: 720px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 150px;
+    box-sizing: border-box;
     flex-direction: column;
-    
+    max-height: 480px;
+    max-width: 720px;
+    aspect-ratio: 720/480;
+    height: 100%;
+    width: 100%;
+
+    font-family: 'Roboto', sans-serif;
+
+    padding: 0;
+    border-radius: 10px;
+    color: white;
     
 }
 .pauseBtn {
@@ -210,8 +235,10 @@ cursor: pointer;
 }
 
 .pauseIcons {
-    height: 70px;
-    width: 70px;
+    max-height: 48px;
+    max-width: 48px;
+    height: 100%;
+    width: 100%;
     filter: invert(48%) sepia(24%) saturate(6259%) hue-rotate(88deg) brightness(50%) contrast(92%);
     cursor: pointer;
 }
@@ -222,23 +249,72 @@ cursor: pointer;
 
 }
 .pauseIconContainer{
-    width: 720px;
+    /* max-width: 720px;
+    max-height: 480px;
+    height: 100%;
+    width: 100%; */
     display: flex;
-    gap: 20px;
+    column-gap: 50px;
     align-items: center;
     justify-content: space-evenly;
     margin-top: 20px;
-
+aspect-ratio: 720/480;
+    
 }
+
+
 
 @media only screen and (max-width: 720px) {
     canvas {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+    .endscreen {
+        width: 100%;
+    }
+    .startScreen {
+        width: 100%;
+    }
+    .gameOverlay {
+        width: 100%;
+    }
+    .tutorialScreen {
+        width: 100%;
+    }
+    .settingsScreen {
+        width: 100%;
+    }
+    .mainContainer {
+        display: block;
+    }
+    .endScreenPic {
         width: 100%;
     }
 }
 
 @media only screen and (max-height: 480px) {
     canvas {
+        height: 100vh;
+    }
+    .endscreen {
+        height: 100vh;
+    }
+    .startScreen {
+        height: 100vh;
+    }
+    .gameOverlay {
+        height: 100vh;
+    }
+    .tutorialScreen {
+        height: 100vh;
+    }
+    .settingsScreen {
+        height: 100vh;
+    }
+    .mainContainer {
+        display: block;
+    }
+    .endScreenPic {
         height: 100vh;
     }
 }

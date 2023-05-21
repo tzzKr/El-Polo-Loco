@@ -43,80 +43,81 @@
 </head>
 
 <body onload="init(); StartAnimation();">
+    <div class="mainContainer">
+        <img src="img/img/LOGO.png" class="Logo" alt="">
 
-    <img src="img/img/LOGO.png" class="Logo" alt="">
 
-    <div><img src="img/img/BG.svg" class="bgimage" alt=""></div>
-
-    <div id="canvasId" class="centerCanvas">
-        <div class="endscreen" onclick="backToMainScreen()" id="gameoverScreen">
-            <img class="endScreenPic" src="img/9_intro_outro_screens/game_over/game over.png" alt="">
-        </div>
-        <div class="endscreen" onclick="backToMainScreen()" id="youlostScreen">
-            <img class="endScreenPic" src="img/9_intro_outro_screens/game_over/you lost.png" alt="">
-        </div>
-        <div class="startScreen" id="startScreen">
-            <button onclick="startGame()" class="startButton">Start Game</button>
-            <button onclick="openSettings()" class="startButton">Settings</button>
-            <button onclick="openTutorial()" class="startButton">Tutorial</button>
-
-        </div>
-        <div class="tutorialScreen" style="display: none;" id="tutorialScreen">
-            <button onclick="closeTutorial()" class="closeBtn"></button>
-
-            <div>
-                <table>
-                    <tr>
-                        <th>Acton</th>
-                        <th>Key</th>
-                    </tr>
-                    <tr>
-                        <td>Walk forwarts</td>
-                        <td>Arrow Key right</td>
-                    </tr>
-                    <tr>
-                        <td>Walk back</td>
-                        <td>Arrow Key Left</td>
-                    </tr>
-                    <tr>
-                        <td>Jump</td>
-                        <td>Arrow Key Up</td>
-                    </tr>
-                    <tr>
-                        <td>Throw bottle-object</td>
-                        <td>K</td>
-                    </tr>
-
-                </table>
+        <div id="canvasId" class="centerCanvas">
+            <div class="endscreen" onclick="backToMainScreen()" id="gameoverScreen">
+                <img class="endScreenPic" src="img/9_intro_outro_screens/game_over/game over.png" alt="">
             </div>
-
-        </div>
-        <div class="settingsScreen" style="display: none;" id="settingScreen">
-            <button onclick="closeSettings()" class="closeBtn"></button>
-
-            <div class="settingOptions" onclick="toggleAudio()">
-                <img id="soundImg" src="img/img/Icons/volume.svg" alt="">
-                <div>ToggleSound</div>
+            <div class="endscreen" onclick="backToMainScreen()" id="youlostScreen">
+                <img class="endScreenPic" src="img/9_intro_outro_screens/game_over/you lost.png" alt="">
+            </div>
+            <div class="startScreen" id="startScreen">
+                <button onclick="startGame()" class="startButton">Start Game</button>
+                <button onclick="openSettings()" class="startButton">Settings</button>
+                <button onclick="openTutorial()" class="startButton">Tutorial</button>
 
             </div>
+            <div class="tutorialScreen" style="display: none;" id="tutorialScreen">
+                <button onclick="closeTutorial()" class="closeBtn"></button>
 
-            <div class="settingOptions" onclick="toggleHitbox()">
-                <img id="hitboxIcon" src="img/img/Icons/Hitbox.svg" alt="">
-                <div>ToggleHitbox</div>
-            </div>
-        </div>
-        <div class="gameOverlay" id="pauseScreen">
-            <img id="pauseGameIcon" onclick="pauseGame()" class="pauseBtn" src="img/img/Icons/pause.svg" alt="">
-            <div id="pauseIconContainer" class="pauseIconContainer" style="display: none;">
-                <img onclick="backToMainScreen()" class="pauseIcons" src="img/img/Icons/home.svg" alt="home">
-                <img onclick="toggleHitbox()" id="hitboxIconPause" class="pauseIcons" src="img/img/Icons/Hitbox.svg" alt="Hitbox">
-                <img onclick="toggleAudio()" id="pauseVolumeBtn" class="pauseIcons" src="img/img/Icons/volume.svg" alt="Music">
-            </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Acton</th>
+                            <th>Key</th>
+                        </tr>
+                        <tr>
+                            <td>Walk forwarts</td>
+                            <td>Arrow Key right</td>
+                        </tr>
+                        <tr>
+                            <td>Walk back</td>
+                            <td>Arrow Key Left</td>
+                        </tr>
+                        <tr>
+                            <td>Jump</td>
+                            <td>Arrow Key Up</td>
+                        </tr>
+                        <tr>
+                            <td>Throw bottle-object</td>
+                            <td>K</td>
+                        </tr>
 
+                    </table>
+                </div>
+
+            </div>
+            <div class="settingsScreen" style="display: none;" id="settingScreen">
+                <button onclick="closeSettings()" class="closeBtn"></button>
+
+                <div class="settingOptions" onclick="toggleAudio()">
+                    <img id="soundImg" src="img/img/Icons/volume.svg" alt="">
+                    <div>ToggleSound</div>
+
+                </div>
+
+                <div class="settingOptions" onclick="toggleHitbox()">
+                    <img id="hitboxIcon" src="img/img/Icons/Hitbox.svg" alt="">
+                    <div>ToggleHitbox</div>
+                </div>
+            </div>
+            <div class="gameOverlay" id="pauseScreen">
+                <img id="pauseGameIcon" onclick="pauseGame()" class="pauseBtn" src="img/img/Icons/pause.svg" alt="">
+                <div id="pauseIconContainer" class="pauseIconContainer" style="display: none;">
+                    <img onclick="backToMainScreen()" class="pauseIcons" src="img/img/Icons/home.svg" alt="home">
+                    <img onclick="toggleHitbox()" id="hitboxIconPause" class="pauseIcons" src="img/img/Icons/Hitbox.svg"
+                        alt="Hitbox">
+                    <img onclick="toggleAudio()" id="pauseVolumeBtn" class="pauseIcons" src="img/img/Icons/volume.svg"
+                        alt="Music">
+                </div>
+
+            </div>
+            <canvas id="canvas" width="720" height="480"></canvas>
         </div>
-        <canvas id="canvas" width="720" height="480"></canvas>
     </div>
-
 </body>
 
 </html>

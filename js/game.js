@@ -99,7 +99,6 @@ function getRandomBgMusic(min, max) {
 function backToMainScreen() {
     showStartScreen = true;
     lvlStart = false;
-
 }
 
 
@@ -113,11 +112,13 @@ function gameLoop() {
         world = null;
         music1.pause();
         music2.pause();
-        pause = false;
         cancelAnimationFrame(drawAnimate);
         clearInterval(bossPatternInterval);
+        pause = true;
+        
     } else if (lvlStart) {
         document.getElementById('startScreen').style.display = 'none';
+        pauseGame();
 
         initLevel();
         canvas = document.getElementById('canvas');
@@ -167,14 +168,11 @@ function pauseGame() {
     if (pause) {
         pause = false;
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/pause.svg';
-
         document.getElementById('pauseScreen').style = 'backdrop-filter: unset';
         document.getElementById('pauseIconContainer').style.display = 'none';
 
-
     }else{
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/play.svg';
-
         document.getElementById('pauseScreen').style = 'backdrop-filter: blur(5px)';
         document.getElementById('pauseIconContainer').style.display = 'flex';
         pause = true;

@@ -217,7 +217,7 @@ class World {
     }
 
     detectEndGame() {
-        if (this.character.characterDead || this.endbossDead) {
+        if (this.character.characterDead || this.endbossDead || showStartScreen) {
             this.character.gameover = true;
             this.character.speedX = 0;
             if (this.runIntervall) {
