@@ -172,11 +172,13 @@ function pauseGame() {
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/pause.svg';
         document.getElementById('pauseScreen').style = 'backdrop-filter: unset';
         document.getElementById('pauseIconContainer').style.display = 'none';
-        
+        music2.play();
     }else{
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/play.svg';
         document.getElementById('pauseScreen').style = 'backdrop-filter: blur(5px)';
         document.getElementById('pauseIconContainer').style.display = 'flex';
+        music2.pause();
+
         
         pause = true;
 

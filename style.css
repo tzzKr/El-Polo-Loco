@@ -267,8 +267,32 @@ th, td {
     aspect-ratio: 720/480;
 
 }
+.gameOverlayMobile {
+    position: absolute;
+    z-index: 3;
+    margin: 0 !important;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 150px;
+    box-sizing: border-box;
+    max-height: 480px;
+    max-width: 720px;
+    aspect-ratio: 720/480;
+    height: 100%;
+    width: 100%;
 
+    font-family: 'Roboto', sans-serif;
 
+    padding: 30px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+
+}
+.controlParent{
+    display: flex;
+}
 
 @media only screen and (max-width: 920px) {
     canvas {
