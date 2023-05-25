@@ -135,6 +135,7 @@ th, td {
     background-position: center;
     font-family: 'Roboto', sans-serif;
 }
+
 .settingsScreen {
     position: fixed;
     z-index: 5;
@@ -182,6 +183,7 @@ th, td {
     font-weight: 500;
     cursor: pointer;
 }
+
 .settingOptions:hover {
     transform: scale(1.05);
     transition: 0.025s ease-in-out;
@@ -203,6 +205,7 @@ th, td {
     display: none;
 
 }
+
 .gameOverlay {
     position: absolute;
     z-index: 3;
@@ -224,14 +227,15 @@ th, td {
     padding: 0;
     border-radius: 10px;
     color: white;
-    
+
 }
+
 .pauseBtn {
     filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(171deg) brightness(229%) contrast(101%);
     height: 48px;
     width: 48px;
-cursor: pointer;
-    
+    cursor: pointer;
+
 }
 
 .pauseIcons {
@@ -242,13 +246,15 @@ cursor: pointer;
     filter: invert(48%) sepia(24%) saturate(6259%) hue-rotate(88deg) brightness(50%) contrast(92%);
     cursor: pointer;
 }
+
 .pauseIcons:hover {
     filter: invert(48%) sepia(24%) saturate(6259%) hue-rotate(88deg) brightness(100%) contrast(92%);
     transform: scale(1.05);
     transition: 0.025s ease-in-out;
 
 }
-.pauseIconContainer{
+
+.pauseIconContainer {
     /* max-width: 720px;
     max-height: 480px;
     height: 100%;
@@ -258,37 +264,79 @@ cursor: pointer;
     align-items: center;
     justify-content: space-evenly;
     margin-top: 20px;
-aspect-ratio: 720/480;
-    
+    aspect-ratio: 720/480;
+
 }
 
 
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 920px) {
     canvas {
         width: 100%;
         margin-left: 0 !important;
     }
+
+    body {
+        overflow: hidden;
+    }
+
     .endscreen {
         width: 100%;
+        max-width: unset;
     }
+
     .startScreen {
         width: 100%;
+        max-width: unset;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0px;
     }
+
     .gameOverlay {
         width: 100%;
+        max-width: unset;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0px;
+
     }
+
     .tutorialScreen {
         width: 100%;
+        max-width: unset;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0px;
+
     }
+
     .settingsScreen {
         width: 100%;
+        max-width: unset;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0px;
+
     }
+
     .mainContainer {
         display: block;
+        width: unset;
+        height: unset;
+        max-width: unset;
+
+
     }
+
     .endScreenPic {
         width: 100%;
+        max-width: unset;
+
+    }
+
+    .Logo {
+        display: none;
     }
 }
 
@@ -296,25 +344,67 @@ aspect-ratio: 720/480;
     canvas {
         height: 100vh;
     }
+
+    body {
+        overflow: hidden;
+    }
+
     .endscreen {
         height: 100vh;
+        max-height: unset;
+
     }
+
     .startScreen {
         height: 100vh;
+        max-height: unset;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0px;
+
     }
+
     .gameOverlay {
         height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0px;
+
     }
+
     .tutorialScreen {
         height: 100vh;
+        max-height: unset;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0px;
+
     }
+
     .settingsScreen {
         height: 100vh;
+        max-height: unset;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 0px;
+
     }
-    .mainContainer {
-        display: block;
-    }
+
     .endScreenPic {
         height: 100vh;
+        max-height: unset;
+
+    }
+
+    .mainContainer {
+        display: block;
+        width: unset;
+        height: unset;
+        max-height: unset;
+
+    }
+
+    .Logo {
+        display: none;
     }
 }

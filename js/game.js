@@ -12,7 +12,7 @@ let chickenWalkInterval = null;
 let chickenStatusInterval = null;
 let cloudInterval = null;
 let coinInterval = null;
-let randomNum = getRandomBgMusic(1, 2);
+let randomNum = getRandomBgMusic(0, 1);
 let hitbox = false;
 let drawAnimate;
 let pause = false;
@@ -112,6 +112,8 @@ function gameLoop() {
         world = null;
         music1.pause();
         music2.pause();
+        music1.currentTime = 0;
+        music2.currentTime = 0;
         cancelAnimationFrame(drawAnimate);
         clearInterval(bossPatternInterval);
         pause = true;
@@ -170,12 +172,14 @@ function pauseGame() {
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/pause.svg';
         document.getElementById('pauseScreen').style = 'backdrop-filter: unset';
         document.getElementById('pauseIconContainer').style.display = 'none';
-
+        
     }else{
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/play.svg';
         document.getElementById('pauseScreen').style = 'backdrop-filter: blur(5px)';
         document.getElementById('pauseIconContainer').style.display = 'flex';
+        
         pause = true;
+
     }
 }
 
