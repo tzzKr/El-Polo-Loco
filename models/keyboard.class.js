@@ -5,4 +5,8 @@ class Keyboard {
     DOWN = false;
     SPACE = false;
     K = false;
+    MOBILELEFT = false;
+    MOBILEUP = false;
+    MOBILERIGHT = false;
+    MOBILETHROW = false;
 }

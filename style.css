@@ -271,16 +271,14 @@ th, td {
     position: absolute;
     z-index: 3;
     margin: 0 !important;
-    display: flex;
+    display: none;
     align-items: flex-end;
     justify-content: space-between;
     gap: 150px;
     box-sizing: border-box;
-    max-height: 480px;
-    max-width: 720px;
     aspect-ratio: 720/480;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 
     font-family: 'Roboto', sans-serif;
 
@@ -292,6 +290,7 @@ th, td {
 }
 .controlParent{
     display: flex;
+    gap: 10px;
 }
 
 @media only screen and (max-width: 920px) {
@@ -362,6 +361,9 @@ th, td {
     .Logo {
         display: none;
     }
+    .gameOverlayMobile{
+        display: flex;
+    }
 }
 
 @media only screen and (max-height: 480px) {
@@ -430,5 +432,8 @@ th, td {
 
     .Logo {
         display: none;
+    }
+    .gameOverlayMobile{
+        display: flex;
     }
 }

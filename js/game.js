@@ -78,6 +78,40 @@ window.addEventListener("keyup", (e) => {
 
 })
 
+let mobileLeft = document.getElementById('walkLeftMobile');
+let mobileRight = document.getElementById('walkRightMobile');
+let mobileUp = document.getElementById('jumpMobile');
+let mobileThrow = document.getElementById('throwMobile');
+
+mobileLeft.addEventListener('touchstart', function() {
+    keyboard.MOBILELEFT = true;
+});
+mobileRight.addEventListener('touchstart', function() {
+    keyboard.MOBILERIGHT = true;
+});
+mobileUp.addEventListener('touchstart', function() {
+    keyboard.MOBILEUP = true;
+});
+mobileThrow.addEventListener('touchstart', function() {
+    keyboard.MOBILETHROW = true;
+});
+
+
+
+
+mobileLeft.addEventListener('touchend', function() {
+    keyboard.MOBILELEFT = false;
+});
+mobileRight.addEventListener('touchend', function() {
+    keyboard.MOBILERIGHT = false;
+});
+mobileUp.addEventListener('touchend', function() {
+    keyboard.MOBILEUP = false;
+});
+mobileThrow.addEventListener('touchend', function() {
+    keyboard.MOBILETHROW = false;
+});
+
 
 
 function startGame() {

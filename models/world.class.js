@@ -248,7 +248,7 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.K && this.character.bottles > 0 && !this.bottleThrew) {
+        if ((this.keyboard.MOBILETHROW ||this.keyboard.K) && this.character.bottles > 0 && !this.bottleThrew) {
             this.bottleThrew = true;
 
             this.hitEndboss = false;

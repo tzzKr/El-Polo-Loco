@@ -114,7 +114,7 @@ class Character extends MovableObject {
           walking_sound.pause();
         }
 
-        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x && !this.characterHurt && !this.gameover) {
+        if ((this.world.keyboard.MOBILERIGHT || this.world.keyboard.RIGHT) && this.x < this.world.level.level_end_x && !this.characterHurt && !this.gameover) {
           this.moveRight();
           this.otherDirection = false;
 
@@ -124,7 +124,7 @@ class Character extends MovableObject {
 
         }
 
-        if (this.world.keyboard.LEFT && this.x > -600 && !this.characterHurt && !this.gameover) {
+        if ((this.world.keyboard.MOBILELEFT || this.world.keyboard.LEFT) && this.x > -600 && !this.characterHurt && !this.gameover) {
           this.moveLeft();
           walking_sound.play();
           this.otherDirection = true;
@@ -132,7 +132,7 @@ class Character extends MovableObject {
         }
 
 
-        if (this.world.keyboard.UP && !this.isAboveGround() && !this.characterHurt && !this.gameover) {
+        if ((this.world.keyboard.MOBILEUP || this.world.keyboard.UP) && !this.isAboveGround() && !this.characterHurt && !this.gameover) {
           this.jump()
 
         }
@@ -166,10 +166,10 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_JUMPING);
 
 
-        } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        } else if ((this.world.keyboard.MOBILERIGHT || this.world.keyboard.RIGHT) || (this.world.keyboard.MOBILELEFT || this.world.keyboard.LEFT)) {
 
           this.playAnimation(this.IMAGES_WALKING);
-        } else if (!(this.world.keyboard.UP || this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.isAboveGround())) {
+        } else if (!(this.world.keyboard.UP || this.world.keyboard.MOBILEUP || this.world.keyboard.MOBILERIGHT || this.world.keyboard.MOBILELEFT || this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.isAboveGround())) {
           this.playAnimation(this.IMAGES_IDLE)
 
         }
