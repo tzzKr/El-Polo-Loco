@@ -20,11 +20,15 @@ let pause = false;
 function init() {
 
     gameLoop();
-
+    loadMoveControll();
 }
 
 
-window.addEventListener("keydown", (e) => {
+
+
+function loadMoveControll() {
+    
+    window.addEventListener("keydown", (e) => {
     if (e.code == "ArrowRight") {
         keyboard.RIGHT = true;
     }
@@ -49,7 +53,6 @@ window.addEventListener("keydown", (e) => {
     }
 
 })
-
 
 window.addEventListener("keyup", (e) => {
     if (e.code == "ArrowRight") {
@@ -111,6 +114,11 @@ mobileUp.addEventListener('touchend', function() {
 mobileThrow.addEventListener('touchend', function() {
     keyboard.MOBILETHROW = false;
 });
+
+}
+
+
+
 
 
 
