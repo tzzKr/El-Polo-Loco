@@ -18,9 +18,8 @@ let drawAnimate;
 let pause = false;
 
 function init() {
-    detectPhonePosition();
+    events();
     gameLoop();
-    loadMoveControll();
 }
 
 
@@ -43,9 +42,48 @@ function detectPhonePosition() {
     });
 }
 
-function loadMoveControll() {
+function events() {
 
-   
+    detectPhonePosition();
+    loadMoveControll();
+    preventContextmenu();
+    loadMoveControllMobile();
+}
+
+function loadMoveControllMobile() {
+    let mobileLeft = document.getElementById('walkLeftMobile');
+    let mobileRight = document.getElementById('walkRightMobile');
+    let mobileUp = document.getElementById('jumpMobile');
+    let mobileThrow = document.getElementById('throwMobile');
+
+    mobileLeft.addEventListener('touchstart', function () {
+        keyboard.MOBILELEFT = true;
+    });
+    mobileRight.addEventListener('touchstart', function () {
+        keyboard.MOBILERIGHT = true;
+    });
+    mobileUp.addEventListener('touchstart', function () {
+        keyboard.MOBILEUP = true;
+    });
+    mobileThrow.addEventListener('touchstart', function () {
+        keyboard.MOBILETHROW = true;
+    });
+
+    mobileLeft.addEventListener('touchend', function () {
+        keyboard.MOBILELEFT = false;
+    });
+    mobileRight.addEventListener('touchend', function () {
+        keyboard.MOBILERIGHT = false;
+    });
+    mobileUp.addEventListener('touchend', function () {
+        keyboard.MOBILEUP = false;
+    });
+    mobileThrow.addEventListener('touchend', function () {
+        keyboard.MOBILETHROW = false;
+    });
+}
+
+function loadMoveControll() {
 
     window.addEventListener("keydown", (e) => {
         if (e.code == "ArrowRight") {
@@ -70,7 +108,6 @@ function loadMoveControll() {
         if (e.code == "Space") {
             keyboard.SPACE = true;
         }
-
     })
 
     window.addEventListener("keyup", (e) => {
@@ -97,14 +134,14 @@ function loadMoveControll() {
         if (e.code == "Space") {
             keyboard.SPACE = false;
         }
-
     })
 
-    let mobileLeft = document.getElementById('walkLeftMobile');
-    let mobileRight = document.getElementById('walkRightMobile');
-    let mobileUp = document.getElementById('jumpMobile');
-    let mobileThrow = document.getElementById('throwMobile');
+    
 
+}
+
+
+function preventContextmenu() {
     
     document.getElementById('walkLeftMobile').addEventListener('contextmenu', function(e) {
         e.preventDefault();
@@ -112,45 +149,13 @@ function loadMoveControll() {
     document.getElementById('walkRightMobile').addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
-    document.getElementById('jumpMobile').addEventListener('jumpMobile', function(e) {
+    document.getElementById('jumpMobile').addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
     document.getElementById('throwMobile').addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
-    
-
-    mobileLeft.addEventListener('touchstart', function () {
-        keyboard.MOBILELEFT = true;
-    });
-    mobileRight.addEventListener('touchstart', function () {
-        keyboard.MOBILERIGHT = true;
-    });
-    mobileUp.addEventListener('touchstart', function () {
-        keyboard.MOBILEUP = true;
-    });
-    mobileThrow.addEventListener('touchstart', function () {
-        keyboard.MOBILETHROW = true;
-    });
-
-
-
-
-    mobileLeft.addEventListener('touchend', function () {
-        keyboard.MOBILELEFT = false;
-    });
-    mobileRight.addEventListener('touchend', function () {
-        keyboard.MOBILERIGHT = false;
-    });
-    mobileUp.addEventListener('touchend', function () {
-        keyboard.MOBILEUP = false;
-    });
-    mobileThrow.addEventListener('touchend', function () {
-        keyboard.MOBILETHROW = false;
-    });
-
 }
-
 
 
 
@@ -178,37 +183,84 @@ function backToMainScreen() {
 }
 
 
+// function gameLoop() {
+//     if (showStartScreen) {
+//         document.getElementById('startScreen').style.display = 'flex';
+//         document.getElementById('gameoverScreen').style.display = 'none';
+//         document.getElementById('youlostScreen').style.display = 'none';
+//         canvas = null;
+//         ctx = null;
+//         world = null;
+//         music1.pause();
+//         music2.pause();
+//         music1.currentTime = 0;
+//         music2.currentTime = 0;
+//         cancelAnimationFrame(drawAnimate);
+//         clearInterval(bossPatternInterval);
+//         pause = true;
+
+//     } else if (lvlStart) {
+//         document.getElementById('startScreen').style.display = 'none';
+//         pauseGame();
+
+//         initLevel();
+//         canvas = document.getElementById('canvas');
+//         ctx = canvas.getContext('2d');
+//         world = new World(canvas, keyboard)
+//         lvlStart = false;
+
+
+//     }
+
+//     requestAnimationFrame(gameLoop);
+// }
+
+function displayElementById(id, displayValue) {
+    document.getElementById(id).style.display = displayValue;
+}
+
+function resetGameEnvironment() {
+    canvas = null;
+    ctx = null;
+    world = null;
+    pause = true;
+}
+
+function resetMusic(music) {
+    music.pause();
+    music.currentTime = 0;
+}
+
+function initializeGame() {
+    pauseGame();
+    initLevel();
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+    world = new World(canvas, keyboard);
+    lvlStart = false;
+}
+
 function gameLoop() {
+    const FLEX_DISPLAY = 'flex';
+    const NONE_DISPLAY = 'none';
+    
     if (showStartScreen) {
-        document.getElementById('startScreen').style.display = 'flex';
-        document.getElementById('gameoverScreen').style.display = 'none';
-        document.getElementById('youlostScreen').style.display = 'none';
-        canvas = null;
-        ctx = null;
-        world = null;
-        music1.pause();
-        music2.pause();
-        music1.currentTime = 0;
-        music2.currentTime = 0;
+        displayElementById('startScreen', FLEX_DISPLAY);
+        displayElementById('gameoverScreen', NONE_DISPLAY);
+        displayElementById('youlostScreen', NONE_DISPLAY);
+        resetGameEnvironment();
+        resetMusic(music1);
+        resetMusic(music2);
         cancelAnimationFrame(drawAnimate);
         clearInterval(bossPatternInterval);
-        pause = true;
-
     } else if (lvlStart) {
-        document.getElementById('startScreen').style.display = 'none';
-        pauseGame();
-
-        initLevel();
-        canvas = document.getElementById('canvas');
-        ctx = canvas.getContext('2d');
-        world = new World(canvas, keyboard)
-        lvlStart = false;
-
-
+        displayElementById('startScreen', NONE_DISPLAY);
+        initializeGame();
     }
 
     requestAnimationFrame(gameLoop);
 }
+
 
 function openTutorial() {
     document.getElementById('tutorialScreen').style.display = 'flex';
@@ -238,8 +290,6 @@ function toggleHitbox() {
         document.getElementById('hitboxIconPause').src = 'img/img/Icons/hitboxfilled.svg'
 
     }
-    console.log('hitbox :>> ', hitbox);
-
 }
 
 function pauseGame() {
@@ -255,15 +305,12 @@ function pauseGame() {
         music2.play();
     } else {
         document.getElementById('gameOverlayMobile').style.display = 'none';
-
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/play.svg';
         document.getElementById('pauseGameIconMobile').src = 'img/img/Icons/play.svg';
         document.getElementById('pauseScreen').style = 'backdrop-filter: blur(5px)';
         document.getElementById('pauseIconContainer').style.display = 'flex';
         document.getElementById('pauseGameIcon').style.display = 'flex';
         music2.pause();
-
-
         pause = true;
 
     }

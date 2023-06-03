@@ -25,25 +25,20 @@ function toggleAudio() {
         globalVolume = 0;
         document.getElementById('soundImg').src = 'img/img/Icons/volume_off.svg'
         document.getElementById('pauseVolumeBtn').src = 'img/img/Icons/volume_off.svg'
-
         audioVolume();
     }
-    console.log('glo :>> ', globalVolume);
-
 }
 function audioVolume() {
-    
-            collectingCoin.volume = globalVolume;
-            collectingBottle.volume = globalVolume;
-            collectingPowerUp.volume = globalVolume;
-            walking_sound.volume = globalVolume;
-            jumping_sound.volume = globalVolume;
-            chicken_dead_sound.volume = globalVolume;
-            hurt_sound.volume = globalVolume;
-            throwBottle.volume = globalVolume;
-            music1.volume = globalVolume;
-            music2.volume = globalVolume;
-          
 
+    collectingCoin.volume = globalVolume;
+    collectingBottle.volume = globalVolume;
+    collectingPowerUp.volume = globalVolume;
+    walking_sound.volume = globalVolume;
+    jumping_sound.volume = globalVolume;
+    chicken_dead_sound.volume = globalVolume;
+    hurt_sound.volume = globalVolume;
+    throwBottle.volume = globalVolume;
+    music1.volume = globalVolume;
+    music2.volume = globalVolume;
 }
 

@@ -103,12 +103,8 @@ class Character extends MovableObject {
 
   animate() {
 
-
-
-
     characterIntervalMove = setInterval(() => {
       if (!pause) {
-
 
         if (!walking_sound.paused) {
           walking_sound.pause();
@@ -121,20 +117,16 @@ class Character extends MovableObject {
           walking_sound.play().catch((error) => {
             console.error("Error playing audio:", error);
           })
-
         }
 
         if ((this.world.keyboard.MOBILELEFT || this.world.keyboard.LEFT) && this.x > -600 && !this.characterHurt && !this.gameover) {
           this.moveLeft();
           walking_sound.play();
           this.otherDirection = true;
-
         }
-
 
         if ((this.world.keyboard.MOBILEUP || this.world.keyboard.UP) && !this.isAboveGround() && !this.characterHurt && !this.gameover) {
           this.jump()
-
         }
 
         if (this.characterHurt && !this.gameover) {
@@ -144,7 +136,6 @@ class Character extends MovableObject {
             this.characterHurt = false;
 
           }, 1000);
-
         }
 
         this.world.camera_x = -this.x + 100;
@@ -154,8 +145,6 @@ class Character extends MovableObject {
 
     characterStatusInterval = setInterval(() => {
       if (!pause) {
-
-
         if (this.isDead()) {
           this.playAnimation(this.IMAGES_DEAD)
           this.characterDead = true;
@@ -164,21 +153,16 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_HURT)
         } else if (this.isAboveGround()) {
           this.playAnimation(this.IMAGES_JUMPING);
-
-
         } else if ((this.world.keyboard.MOBILERIGHT || this.world.keyboard.RIGHT) || (this.world.keyboard.MOBILELEFT || this.world.keyboard.LEFT)) {
 
           this.playAnimation(this.IMAGES_WALKING);
         } else if (!(this.world.keyboard.UP || this.world.keyboard.MOBILEUP || this.world.keyboard.MOBILERIGHT || this.world.keyboard.MOBILELEFT || this.world.keyboard.LEFT || this.world.keyboard.RIGHT || this.isAboveGround())) {
           this.playAnimation(this.IMAGES_IDLE)
-
         }
       }
     }, 100);
 
   }
-
-
 
   jump() {
     jumping_sound.currentTime = 0;
@@ -189,10 +173,8 @@ class Character extends MovableObject {
   knockBack() {
     if (!this.isAboveGround()) {
       this.speedY = 3;
-
     }
     this.x -= 5;
-
   }
 }
 
