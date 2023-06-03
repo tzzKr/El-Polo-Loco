@@ -18,102 +18,136 @@ let drawAnimate;
 let pause = false;
 
 function init() {
-
+    detectPhonePosition();
     gameLoop();
     loadMoveControll();
 }
 
 
+function detectPhonePosition() {
 
+    if (window.matchMedia("(orientation: portrait)").matches) {
+        // Portrait mode
+        this.document.getElementById('mobileRotation').style.display = 'flex';
+
+    }
+    window.addEventListener("resize", function () {
+        if (window.matchMedia("(orientation: landscape)").matches) {
+            // Landscape mode
+            this.document.getElementById('mobileRotation').style.display = 'none';
+        } else {
+            // Portrait mode
+            this.document.getElementById('mobileRotation').style.display = 'flex';
+
+        }
+    });
+}
 
 function loadMoveControll() {
-    
+
+   
+
     window.addEventListener("keydown", (e) => {
-    if (e.code == "ArrowRight") {
-        keyboard.RIGHT = true;
-    }
-    if (e.code == "KeyK") {
-        keyboard.K = true;
-    }
+        if (e.code == "ArrowRight") {
+            keyboard.RIGHT = true;
+        }
+        if (e.code == "KeyK") {
+            keyboard.K = true;
+        }
 
-    if (e.code == "ArrowLeft") {
-        keyboard.LEFT = true;
-    }
+        if (e.code == "ArrowLeft") {
+            keyboard.LEFT = true;
+        }
 
-    if (e.code == "ArrowUp") {
-        keyboard.UP = true;
-    }
+        if (e.code == "ArrowUp") {
+            keyboard.UP = true;
+        }
 
-    if (e.code == "ArrowDown") {
-        keyboard.DOWN = true;
-    }
+        if (e.code == "ArrowDown") {
+            keyboard.DOWN = true;
+        }
 
-    if (e.code == "Space") {
-        keyboard.SPACE = true;
-    }
+        if (e.code == "Space") {
+            keyboard.SPACE = true;
+        }
 
-})
+    })
 
-window.addEventListener("keyup", (e) => {
-    if (e.code == "ArrowRight") {
-        keyboard.RIGHT = false;
-    }
+    window.addEventListener("keyup", (e) => {
+        if (e.code == "ArrowRight") {
+            keyboard.RIGHT = false;
+        }
 
-    if (e.code == "KeyK") {
-        keyboard.K = false;;
-    }
+        if (e.code == "KeyK") {
+            keyboard.K = false;;
+        }
 
-    if (e.code == "ArrowLeft") {
-        keyboard.LEFT = false;
-    }
+        if (e.code == "ArrowLeft") {
+            keyboard.LEFT = false;
+        }
 
-    if (e.code == "ArrowUp") {
-        keyboard.UP = false;
-    }
+        if (e.code == "ArrowUp") {
+            keyboard.UP = false;
+        }
 
-    if (e.code == "ArrowDown") {
-        keyboard.DOWN = false;
-    }
+        if (e.code == "ArrowDown") {
+            keyboard.DOWN = false;
+        }
 
-    if (e.code == "Space") {
-        keyboard.SPACE = false;
-    }
+        if (e.code == "Space") {
+            keyboard.SPACE = false;
+        }
 
-})
+    })
 
-let mobileLeft = document.getElementById('walkLeftMobile');
-let mobileRight = document.getElementById('walkRightMobile');
-let mobileUp = document.getElementById('jumpMobile');
-let mobileThrow = document.getElementById('throwMobile');
+    let mobileLeft = document.getElementById('walkLeftMobile');
+    let mobileRight = document.getElementById('walkRightMobile');
+    let mobileUp = document.getElementById('jumpMobile');
+    let mobileThrow = document.getElementById('throwMobile');
 
-mobileLeft.addEventListener('touchstart', function() {
-    keyboard.MOBILELEFT = true;
-});
-mobileRight.addEventListener('touchstart', function() {
-    keyboard.MOBILERIGHT = true;
-});
-mobileUp.addEventListener('touchstart', function() {
-    keyboard.MOBILEUP = true;
-});
-mobileThrow.addEventListener('touchstart', function() {
-    keyboard.MOBILETHROW = true;
-});
+    
+    document.getElementById('walkLeftMobile').addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    document.getElementById('walkRightMobile').addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    document.getElementById('jumpMobile').addEventListener('jumpMobile', function(e) {
+        e.preventDefault();
+    });
+    document.getElementById('throwMobile').addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    
+
+    mobileLeft.addEventListener('touchstart', function () {
+        keyboard.MOBILELEFT = true;
+    });
+    mobileRight.addEventListener('touchstart', function () {
+        keyboard.MOBILERIGHT = true;
+    });
+    mobileUp.addEventListener('touchstart', function () {
+        keyboard.MOBILEUP = true;
+    });
+    mobileThrow.addEventListener('touchstart', function () {
+        keyboard.MOBILETHROW = true;
+    });
 
 
 
 
-mobileLeft.addEventListener('touchend', function() {
-    keyboard.MOBILELEFT = false;
-});
-mobileRight.addEventListener('touchend', function() {
-    keyboard.MOBILERIGHT = false;
-});
-mobileUp.addEventListener('touchend', function() {
-    keyboard.MOBILEUP = false;
-});
-mobileThrow.addEventListener('touchend', function() {
-    keyboard.MOBILETHROW = false;
-});
+    mobileLeft.addEventListener('touchend', function () {
+        keyboard.MOBILELEFT = false;
+    });
+    mobileRight.addEventListener('touchend', function () {
+        keyboard.MOBILERIGHT = false;
+    });
+    mobileUp.addEventListener('touchend', function () {
+        keyboard.MOBILEUP = false;
+    });
+    mobileThrow.addEventListener('touchend', function () {
+        keyboard.MOBILETHROW = false;
+    });
 
 }
 
@@ -134,9 +168,9 @@ function getRandomBgMusic(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-  
-  
+}
+
+
 
 function backToMainScreen() {
     showStartScreen = true;
@@ -159,7 +193,7 @@ function gameLoop() {
         cancelAnimationFrame(drawAnimate);
         clearInterval(bossPatternInterval);
         pause = true;
-        
+
     } else if (lvlStart) {
         document.getElementById('startScreen').style.display = 'none';
         pauseGame();
@@ -194,7 +228,7 @@ function closeSettings() {
 
 function toggleHitbox() {
     if (hitbox) {
-        hitbox = false; 
+        hitbox = false;
         document.getElementById('hitboxIcon').src = 'img/img/Icons/Hitbox.svg'
         document.getElementById('hitboxIconPause').src = 'img/img/Icons/Hitbox.svg'
 
@@ -219,7 +253,7 @@ function pauseGame() {
         document.getElementById('pauseGameIcon').style.display = '';
 
         music2.play();
-    }else{
+    } else {
         document.getElementById('gameOverlayMobile').style.display = 'none';
 
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/play.svg';
@@ -229,7 +263,7 @@ function pauseGame() {
         document.getElementById('pauseGameIcon').style.display = 'flex';
         music2.pause();
 
-        
+
         pause = true;
 
     }

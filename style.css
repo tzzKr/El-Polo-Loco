@@ -261,6 +261,46 @@ th, td {
 
 }
 
+.rotateMobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(img/img/Startscreen.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    
+    height: 100vh;
+    width: 100vw;
+
+}
+
+@keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-180deg);
+    }
+    50.01%, 100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .rotateImg {
+    height: 100px;
+    width: 100px;
+    filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(171deg) brightness(229%) contrast(101%);
+    animation: rotation 2s linear infinite;
+  }
+  
+
 .pauseIconContainer {
     /* max-width: 720px;
     max-height: 480px;
@@ -308,6 +348,7 @@ th, td {
 .controlParent {
     display: flex;
     gap: 10px;
+    user-select: none;
 }
 
 @media only screen and (max-width: 920px) {
