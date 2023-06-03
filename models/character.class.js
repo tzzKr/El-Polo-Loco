@@ -101,48 +101,64 @@ class Character extends MovableObject {
 
   }
 
+  checkMovement() {
+    if (!this.characterHurt && !this.gameover) {
+      if ((this.world.keyboard.MOBILERIGHT || this.world.keyboard.RIGHT) && this.x < this.world.level.level_end_x) {
+        this.moveRight();
+        this.otherDirection = false;
+        this.playSound(walking_sound);
+      }
+      if ((this.world.keyboard.MOBILELEFT || this.world.keyboard.LEFT) && this.x > -600) {
+        this.moveLeft();
+        this.otherDirection = true;
+        this.playSound(walking_sound);
+      }
+    }
+  }
+  
+  checkInteractions() {
+    if ((this.world.keyboard.MOBILEUP || this.world.keyboard.UP) && !this.isAboveGround() && !this.characterHurt && !this.gameover) {
+      this.jump();
+    }
+    if (this.characterHurt && !this.gameover) {
+      this.knockBack();
+      this.handleHurt();
+    }
+  }
+  
+  handleHurt() {
+    setTimeout(() => {
+      this.characterHurt = false;
+    }, 1000);
+  }
+  
+  updateCamera() {
+    this.world.camera_x = -this.x + 100;
+  }
+  
+  playSound(sound) {
+    sound.play().catch((error) => {
+      console.error("Error playing audio:", error);
+    });
+  }
+  
   animate() {
-
     characterIntervalMove = setInterval(() => {
       if (!pause) {
-
         if (!walking_sound.paused) {
           walking_sound.pause();
         }
-
-        if ((this.world.keyboard.MOBILERIGHT || this.world.keyboard.RIGHT) && this.x < this.world.level.level_end_x && !this.characterHurt && !this.gameover) {
-          this.moveRight();
-          this.otherDirection = false;
-
-          walking_sound.play().catch((error) => {
-            console.error("Error playing audio:", error);
-          })
-        }
-
-        if ((this.world.keyboard.MOBILELEFT || this.world.keyboard.LEFT) && this.x > -600 && !this.characterHurt && !this.gameover) {
-          this.moveLeft();
-          walking_sound.play();
-          this.otherDirection = true;
-        }
-
-        if ((this.world.keyboard.MOBILEUP || this.world.keyboard.UP) && !this.isAboveGround() && !this.characterHurt && !this.gameover) {
-          this.jump()
-        }
-
-        if (this.characterHurt && !this.gameover) {
-          this.knockBack();
-
-          setTimeout(() => {
-            this.characterHurt = false;
-
-          }, 1000);
-        }
-
-        this.world.camera_x = -this.x + 100;
+  
+        this.checkMovement();
+        this.checkInteractions();
+        this.updateCamera();
       }
+    }, 1000 / 60);
+  
+    this.characterStatus()
+  }
 
-    }, 1000 / 60)
-
+  characterStatus() {
     characterStatusInterval = setInterval(() => {
       if (!pause) {
         if (this.isDead()) {
@@ -161,7 +177,6 @@ class Character extends MovableObject {
         }
       }
     }, 100);
-
   }
 
   jump() {
