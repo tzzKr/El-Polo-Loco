@@ -112,18 +112,24 @@
                         alt="Hitbox">
                     <img onclick="toggleAudio()" id="pauseVolumeBtn" class="pauseIcons" src="img/img/Icons/volume.svg"
                         alt="Music">
+                    <img onclick="openTutorial()" class="pauseIcons" src="img/img/Icons/rocket_launch.svg" alt="">
                 </div>
 
             </div>
             <div class="gameOverlayMobile" id="gameOverlayMobile">
 
-                <div class="controlParent">
-                    <div id="walkLeftMobile"><img src="img/img/Icons/arrow_circle_left.svg" alt=""></div>
-                    <div id="walkRightMobile"><img src="img/img/Icons/arrow_circle_right.svg" alt=""></div>
-                </div>
-                <div class="controlParent">
-                    <div id="throwMobile"><img src="img/img/Icons/rocket_launch.svg" alt=""></div>
-                    <div id="jumpMobile"><img src="img/img/Icons/arrow_circle_up.svg" alt=""></div>
+                <img id="pauseGameIconMobile" onclick="pauseGame()" class="pauseBtnMobile" src="img/img/Icons/pause.svg"
+                    alt="">
+
+                <div class="controlContainer">
+                    <div class="controlParent">
+                        <div id="walkLeftMobile"><img src="img/img/Icons/arrow_circle_left.svg" alt=""></div>
+                        <div id="walkRightMobile"><img src="img/img/Icons/arrow_circle_right.svg" alt=""></div>
+                    </div>
+                    <div class="controlParent">
+                        <div id="throwMobile"><img src="img/img/Icons/rocket_launch.svg" alt=""></div>
+                        <div id="jumpMobile"><img src="img/img/Icons/arrow_circle_up.svg" alt=""></div>
+                    </div>
                 </div>
             </div>
             <canvas id="canvas" width="720" height="480"></canvas>

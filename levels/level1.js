@@ -30,6 +30,11 @@ level1 = new Level(
 
     ],
     [
+        new BackgroundObject('img/5_background/layers/air.png', -719 * 2, 0), //Himmel
+        new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719 * 2, 0), //3. layer
+        new BackgroundObject('img/5_background/layers/2_second_layer/2.png', -719 * 2, 0), //2. layer
+        new BackgroundObject('img/5_background/layers/1_first_layer/2.png', -719 * 2, 0), //1. layer
+
         new BackgroundObject('img/5_background/layers/air.png', -719, 0), //Himmel
         new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719, 0), //3. layer
         new BackgroundObject('img/5_background/layers/2_second_layer/2.png', -719, 0), //2. layer
@@ -55,6 +60,11 @@ level1 = new Level(
         new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 719 * 3, 0), //2. layer
         new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 719 * 3, 0), //1. layer
 
+        new BackgroundObject('img/5_background/layers/air.png', 719 * 4, 0), //Himmel
+        new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 719 * 4, 0), //3. layer
+        new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 719 * 4, 0), //2. layer
+        new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 719 * 4, 0), //1. layer
+
     ],
     [
         new CoinObject(300, 200),
@@ -71,7 +81,7 @@ level1 = new Level(
         new BottleObject('img/6_salsa_bottle/1_salsa_bottle_on_ground.png', 2000),
     ],
     [
-        new PowerUpObject('img/8_coin/BorritoPowerUP.png', 200, 200),
+        new PowerUpObject('img/8_coin/BorritoPowerUP.png', 1200, 200),
     ],
     [
         new Endboss(),

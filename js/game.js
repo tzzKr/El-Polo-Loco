@@ -212,13 +212,21 @@ function pauseGame() {
     if (pause) {
         pause = false;
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/pause.svg';
+        document.getElementById('pauseGameIconMobile').src = 'img/img/Icons/pause.svg';
+        document.getElementById('gameOverlayMobile').style.display = '';
         document.getElementById('pauseScreen').style = 'backdrop-filter: unset';
         document.getElementById('pauseIconContainer').style.display = 'none';
+        document.getElementById('pauseGameIcon').style.display = '';
+
         music2.play();
     }else{
+        document.getElementById('gameOverlayMobile').style.display = 'none';
+
         document.getElementById('pauseGameIcon').src = 'img/img/Icons/play.svg';
+        document.getElementById('pauseGameIconMobile').src = 'img/img/Icons/play.svg';
         document.getElementById('pauseScreen').style = 'backdrop-filter: blur(5px)';
         document.getElementById('pauseIconContainer').style.display = 'flex';
+        document.getElementById('pauseGameIcon').style.display = 'flex';
         music2.pause();
 
         

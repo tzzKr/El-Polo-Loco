@@ -237,6 +237,13 @@ th, td {
     cursor: pointer;
 
 }
+.pauseBtnMobile {
+    filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(171deg) brightness(229%) contrast(101%);
+    height: 48px;
+    width: 48px;
+    cursor: pointer;
+
+}
 
 .pauseIcons {
     max-height: 48px;
@@ -267,6 +274,7 @@ th, td {
     aspect-ratio: 720/480;
 
 }
+
 .gameOverlayMobile {
     position: absolute;
     z-index: 3;
@@ -279,16 +287,25 @@ th, td {
     aspect-ratio: 720/480;
     height: 100vh;
     width: 100vw;
-
+    flex-direction: column;
     font-family: 'Roboto', sans-serif;
-
+    align-items: center;
     padding: 30px;
     padding-bottom: 10px;
     border-radius: 10px;
     color: white;
 
 }
-.controlParent{
+
+
+.controlContainer {
+
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+
+.controlParent {
     display: flex;
     gap: 10px;
 }
@@ -303,6 +320,10 @@ th, td {
         overflow: hidden;
     }
 
+    .pauseBtn {
+        display: none;
+    }
+
     .endscreen {
         width: 100%;
         max-width: unset;
@@ -322,7 +343,7 @@ th, td {
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 0px;
-
+        padding-top: 23px;
     }
 
     .tutorialScreen {
@@ -361,7 +382,8 @@ th, td {
     .Logo {
         display: none;
     }
-    .gameOverlayMobile{
+
+    .gameOverlayMobile {
         display: flex;
     }
 }
@@ -375,6 +397,10 @@ th, td {
         overflow: hidden;
     }
 
+    .pauseBtn {
+        display: none;
+    }
+ß
     .endscreen {
         height: 100vh;
         max-height: unset;
@@ -395,7 +421,7 @@ th, td {
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 0px;
-
+        padding-top: 23px;
     }
 
     .tutorialScreen {
@@ -433,7 +459,8 @@ th, td {
     .Logo {
         display: none;
     }
-    .gameOverlayMobile{
+
+    .gameOverlayMobile {
         display: flex;
     }
 }
