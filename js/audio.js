@@ -14,6 +14,20 @@ let music1 = new Audio('audio/BgMusic1.mp3');
 let music2 = new Audio('audio/BgMusic2.mp3');
 let musicArray = [music1, music2];
 
+// Audio preloading for better performance
+function preloadAudio() {
+    const audioFiles = [collectingCoin, collectingBottle, collectingPowerUp, walking_sound, 
+                       jumping_sound, chicken_dead_sound, hurt_sound, throwBottle, music1, music2];
+    
+    audioFiles.forEach(audio => {
+        audio.preload = 'auto';
+        audio.load();
+    });
+}
+
+// Initialize audio preloading when page loads
+window.addEventListener('DOMContentLoaded', preloadAudio);
+
 function toggleAudio() {
 
     if (globalVolume == 0) {
