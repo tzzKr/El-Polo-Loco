@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080",
+    "deploy": "gh-pages -d .",
+    "predeploy": "npm run build",
+    "build": "echo 'No build step required for static site'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,8 +21,11 @@
   "bugs": {
     "url": "https://github.com/tzzKr/El-Polo-Loco/issues"
   },
-  "homepage": "https://github.com/tzzKr/El-Polo-Loco#readme",
+  "homepage": "https://tzzKr.github.io/El-Polo-Loco/",
   "dependencies": {
     "animejs": "^3.2.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }

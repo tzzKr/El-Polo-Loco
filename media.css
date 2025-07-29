@@ -1,13 +1,42 @@
+/* Mobile optimizations for iPhone */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .Logo {
+        width: 300px;
+        margin-top: 0px;
+    }
+    .centerCanvas {
+        max-height: 90vh;
+    }
+}
+
 @media (max-height: 1000px) {
     .Logo {
         margin-top: 0px;
         width: 700px;
     }
 }
+
 @media (max-height: 700px) {
     .Logo {
         margin-top: 0px;
         width: 500px;
+    }
+}
+
+/* iPhone specific fixes */
+@media only screen and (max-width: 480px) {
+    .controlContainer {
+        touch-action: manipulation;
+    }
+    
+    .controlParent div {
+        touch-action: manipulation;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    canvas {
+        touch-action: none;
     }
 }
     

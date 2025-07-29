@@ -28,7 +28,11 @@ Steuere **Pepe** durch eine mexikanische Wüstenlandschaft, sammle Münzen und F
 - 🏆 Sammelsystem (Münzen, Flaschen, Power-Ups)
 - ⏸️ Pause-Menü mit Einstellungen
 
-## 🚀 Installation & Start
+## 🎮 Online spielen
+
+**Live Demo:** [https://tzzKr.github.io/El-Polo-Loco/](https://tzzKr.github.io/El-Polo-Loco/)
+
+## 🚀 Lokale Installation
 
 ```bash
 # Repository klonen
@@ -40,14 +44,18 @@ cd El-Polo-Loco
 # Dependencies installieren
 npm install
 
-# HTTP Server starten (Python)
-python3 -m http.server 8080
-
-# Oder mit Node.js
-npx serve .
+# Development Server starten
+npm start
 ```
 
 **Spiel öffnen:** `http://localhost:8080`
+
+## 📦 Deployment
+
+```bash
+# Zu GitHub Pages deployen
+npm run deploy
+```
 
 ## 🛠️ Technologien
 

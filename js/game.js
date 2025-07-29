@@ -56,30 +56,64 @@ function loadMoveControllMobile() {
     let mobileUp = document.getElementById('jumpMobile');
     let mobileThrow = document.getElementById('throwMobile');
 
-    mobileLeft.addEventListener('touchstart', function () {
-        keyboard.MOBILELEFT = true;
+    // Enhanced touch events for better iOS compatibility
+    const touchEvents = ['touchstart', 'mousedown'];
+    const endEvents = ['touchend', 'mouseup', 'touchcancel'];
+
+    // Left button
+    touchEvents.forEach(event => {
+        mobileLeft.addEventListener(event, function (e) {
+            e.preventDefault();
+            keyboard.MOBILELEFT = true;
+        }, { passive: false });
     });
-    mobileRight.addEventListener('touchstart', function () {
-        keyboard.MOBILERIGHT = true;
-    });
-    mobileUp.addEventListener('touchstart', function () {
-        keyboard.MOBILEUP = true;
-    });
-    mobileThrow.addEventListener('touchstart', function () {
-        keyboard.MOBILETHROW = true;
+    endEvents.forEach(event => {
+        mobileLeft.addEventListener(event, function (e) {
+            e.preventDefault();
+            keyboard.MOBILELEFT = false;
+        }, { passive: false });
     });
 
-    mobileLeft.addEventListener('touchend', function () {
-        keyboard.MOBILELEFT = false;
+    // Right button
+    touchEvents.forEach(event => {
+        mobileRight.addEventListener(event, function (e) {
+            e.preventDefault();
+            keyboard.MOBILERIGHT = true;
+        }, { passive: false });
     });
-    mobileRight.addEventListener('touchend', function () {
-        keyboard.MOBILERIGHT = false;
+    endEvents.forEach(event => {
+        mobileRight.addEventListener(event, function (e) {
+            e.preventDefault();
+            keyboard.MOBILERIGHT = false;
+        }, { passive: false });
     });
-    mobileUp.addEventListener('touchend', function () {
-        keyboard.MOBILEUP = false;
+
+    // Jump button
+    touchEvents.forEach(event => {
+        mobileUp.addEventListener(event, function (e) {
+            e.preventDefault();
+            keyboard.MOBILEUP = true;
+        }, { passive: false });
     });
-    mobileThrow.addEventListener('touchend', function () {
-        keyboard.MOBILETHROW = false;
+    endEvents.forEach(event => {
+        mobileUp.addEventListener(event, function (e) {
+            e.preventDefault();
+            keyboard.MOBILEUP = false;
+        }, { passive: false });
+    });
+
+    // Throw button
+    touchEvents.forEach(event => {
+        mobileThrow.addEventListener(event, function (e) {
+            e.preventDefault();
+            keyboard.MOBILETHROW = true;
+        }, { passive: false });
+    });
+    endEvents.forEach(event => {
+        mobileThrow.addEventListener(event, function (e) {
+            e.preventDefault();
+            keyboard.MOBILETHROW = false;
+        }, { passive: false });
     });
 }
 

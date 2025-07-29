@@ -14,6 +14,22 @@ let music1 = new Audio('audio/BgMusic1.mp3');
 let music2 = new Audio('audio/BgMusic2.mp3');
 let musicArray = [music1, music2];
 
+// iOS Audio Context fix
+let audioContext = null;
+let audioInitialized = false;
+
+function initializeAudioContext() {
+    if (!audioInitialized && (window.AudioContext || window.webkitAudioContext)) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        audioInitialized = true;
+        
+        // Resume audio context if suspended (iOS requirement)
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+    }
+}
+
 // Audio preloading for better performance
 function preloadAudio() {
     const audioFiles = [collectingCoin, collectingBottle, collectingPowerUp, walking_sound, 
@@ -22,11 +38,35 @@ function preloadAudio() {
     audioFiles.forEach(audio => {
         audio.preload = 'auto';
         audio.load();
+        // iOS requires user interaction before playing audio
+        audio.muted = true;
+        audio.play().catch(() => {}).then(() => {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.muted = false;
+        });
     });
 }
 
+// Initialize audio on first user interaction (iOS requirement)
+function enableAudioOnUserGesture() {
+    initializeAudioContext();
+    preloadAudio();
+    
+    // Remove event listeners after first interaction
+    document.removeEventListener('touchstart', enableAudioOnUserGesture);
+    document.removeEventListener('click', enableAudioOnUserGesture);
+}
+
 // Initialize audio preloading when page loads
-window.addEventListener('DOMContentLoaded', preloadAudio);
+window.addEventListener('DOMContentLoaded', () => {
+    // Add touch/click listeners for iOS audio unlock
+    document.addEventListener('touchstart', enableAudioOnUserGesture, { once: true });
+    document.addEventListener('click', enableAudioOnUserGesture, { once: true });
+    
+    // Preload immediately for desktop
+    preloadAudio();
+});
 
 function toggleAudio() {
 
